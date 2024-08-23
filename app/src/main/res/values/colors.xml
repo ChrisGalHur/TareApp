@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="tabSelectorColorPrimary">#FF6200EE</color>
     <color name="tabSelectorColorSecondary">#B087EA</color>
+    <color name="test_green">#7269E680</color>
+
 </resources>

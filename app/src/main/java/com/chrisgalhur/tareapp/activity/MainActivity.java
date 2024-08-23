@@ -2,6 +2,7 @@ package com.chrisgalhur.tareapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +12,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.preference.MyPreferences;
+import com.chrisgalhur.tareapp.util.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     //region INJECTION
     private MyPreferences preferences;
@@ -31,12 +33,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         preferences = new MyPreferences(this);
+
+
         if (preferences.isFirstTimeLaunch()) {
             launchOnboardingActivity();
             finish();
         }
     }
-    //endregion ON_CREATE
+    //endregion ON_CREATEº
 
     //region LAUNCH_ONBOARDING_ACTIVITY
     private void launchOnboardingActivity() {
