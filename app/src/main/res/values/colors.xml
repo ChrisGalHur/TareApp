@@ -2,6 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_blue">#AAC4FE</color>
+    <color name="medium_blue">#7F9CEC</color>
+    <color name="dark_blue">#5D7EAB</color>
     <color name="tabSelectorColorPrimary">#FF6200EE</color>
     <color name="tabSelectorColorSecondary">#B087EA</color>
     <color name="test_green">#7269E680</color>

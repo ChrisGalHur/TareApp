@@ -56,9 +56,6 @@ public class OnBoardingFragment extends Fragment {
         int position = Integer.parseInt(getArguments().getString(ARG_POSITION));
 
         fillFragment(position);
-        //setImageFromPosition(position);
-        //setDescriptionFromPosition(position);
-        //setDiamondFromPosition(position);
     }
     //endregion ON_VIEW_CREATED
 
@@ -74,25 +71,27 @@ public class OnBoardingFragment extends Fragment {
             case 0:
                 ivImage.setImageResource(R.drawable.test_image);
                 tvDescription.setText("First description");
-                constraintLayout.setBackgroundColor(getResources().getColor(R.color.test_green));
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 break;
             case 1:
                 ivImage.setImageResource(R.drawable.test_image2);
                 tvDescription.setText("Second description");
-                constraintLayout.setBackgroundColor(getResources().getColor(R.color.tabSelectorColorPrimary));
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.medium_blue));
                 break;
             case 2:
                 ivImage.setImageResource(R.drawable.test_image3);
                 tvDescription.setText("Third description");
-                constraintLayout.setBackgroundColor(getResources().getColor(R.color.tabSelectorColorSecondary));
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.dark_blue));
                 break;
             case 3:
                 ivImage.setImageResource(R.drawable.test_image4);
                 tvDescription.setText("Fourth description");
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.medium_blue));
                 break;
             case 4:
                 ivImage.setImageResource(R.drawable.test_image5);
                 tvDescription.setText("Fifth description");
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 break;
             default:
                 break;

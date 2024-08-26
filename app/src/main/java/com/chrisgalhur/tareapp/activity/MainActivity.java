@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,8 @@ public class MainActivity extends BaseActivity {
 
     //region UI
     private Button btnToCalendar;
+    private Button btToOnboarding;
+    private ImageView ivPreference;
     //endregion UI
 
     //region ON_CREATE
@@ -45,6 +48,8 @@ public class MainActivity extends BaseActivity {
         }
 
         btnToCalendar = findViewById(R.id.btnToCalendarMain);
+        btToOnboarding = findViewById(R.id.btnToOnboardingMain);
+        ivPreference = findViewById(R.id.ivPreferenceMain);
 
         btnToCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,8 +57,22 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(MainActivity.this, CalendarActivity.class));
             }
         });
+
+        btToOnboarding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchOnboardingActivity();
+            }
+        });
+
+        ivPreference.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PreferenceActivity.class));
+            }
+        });
     }
-    //endregion ON_CREATEº
+    //endregion ON_CREATE
 
     //region LAUNCH_ONBOARDING_ACTIVITY
     private void launchOnboardingActivity() {

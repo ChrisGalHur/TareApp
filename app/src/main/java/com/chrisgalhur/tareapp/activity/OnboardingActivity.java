@@ -37,6 +37,7 @@ public class OnboardingActivity extends BaseActivity {
     private ImageView ivDiamond3;
     private ImageView ivDiamond4;
     private ImageView ivDiamond5;
+    private TextView tvSkipTop;
     private TextView tvSkipBack;
     private TextView tvNextFinish;
     //endregion UI
@@ -59,6 +60,7 @@ public class OnboardingActivity extends BaseActivity {
         ivDiamond3 = findViewById(R.id.ivDiamond3FragmentOnBoarding);
         ivDiamond4 = findViewById(R.id.ivDiamond4FragmentOnBoarding);
         ivDiamond5 = findViewById(R.id.ivDiamond5FragmentOnBoarding);
+        tvSkipTop = findViewById(R.id.tvSkipTopOnBoarding);
         tvSkipBack = findViewById(R.id.tvSkipOnBoarding);
         tvNextFinish = findViewById(R.id.tvNextOnBoarding);
 
@@ -111,6 +113,7 @@ public class OnboardingActivity extends BaseActivity {
                 ivDiamond3.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond4.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond5.setImageResource(R.drawable.test_diamond_empty);
+                tvSkipTop.setVisibility(TextView.INVISIBLE);
                 break;
             case 1:
                 ivDiamond.setImageResource(R.drawable.test_diamond_empty);
@@ -118,6 +121,7 @@ public class OnboardingActivity extends BaseActivity {
                 ivDiamond3.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond4.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond5.setImageResource(R.drawable.test_diamond_empty);
+                tvSkipTop.setVisibility(TextView.VISIBLE);
                 break;
             case 2:
                 ivDiamond.setImageResource(R.drawable.test_diamond_empty);
@@ -125,6 +129,7 @@ public class OnboardingActivity extends BaseActivity {
                 ivDiamond3.setImageResource(R.drawable.test_diamond_filled);
                 ivDiamond4.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond5.setImageResource(R.drawable.test_diamond_empty);
+                tvSkipTop.setVisibility(TextView.VISIBLE);
                 break;
             case 3:
                 ivDiamond.setImageResource(R.drawable.test_diamond_empty);
@@ -132,6 +137,7 @@ public class OnboardingActivity extends BaseActivity {
                 ivDiamond3.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond4.setImageResource(R.drawable.test_diamond_filled);
                 ivDiamond5.setImageResource(R.drawable.test_diamond_empty);
+                tvSkipTop.setVisibility(TextView.VISIBLE);
                 break;
             case 4:
                 ivDiamond.setImageResource(R.drawable.test_diamond_empty);
@@ -139,6 +145,7 @@ public class OnboardingActivity extends BaseActivity {
                 ivDiamond3.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond4.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond5.setImageResource(R.drawable.test_diamond_filled);
+                tvSkipTop.setVisibility(TextView.INVISIBLE);
                 break;
             default:
                 break;
