@@ -1,6 +1,5 @@
 package com.chrisgalhur.tareapp.util;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,23 +14,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chrisgalhur.tareapp.R;
-import com.chrisgalhur.tareapp.activity.MainActivity;
 
-public class OnBoardingFragment extends Fragment {
+public class OnboardingFragment extends Fragment {
 
     //region CONSTANTS
     private static final String ARG_POSITION = "position";
     //endregion CONSTANTS
 
     //region CONSTRUCTOR
-    public OnBoardingFragment() {
+    public OnboardingFragment() {
         // Required empty public constructor to create a new instance
     }
     //endregion CONSTRUCTOR
 
     //region ON_BOARDING_FRAGMENT
-    public static OnBoardingFragment newInstance(String position) {
-        OnBoardingFragment fragment = new OnBoardingFragment();
+    public static OnboardingFragment newInstance(String position) {
+        OnboardingFragment fragment = new OnboardingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_POSITION, position);
         fragment.setArguments(args);

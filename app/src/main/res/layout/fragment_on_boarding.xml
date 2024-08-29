@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".util.OnBoardingFragment"
+        tools:context=".util.OnboardingFragment"
         android:background="#7269E680">
 
     <androidx.constraintlayout.widget.ConstraintLayout

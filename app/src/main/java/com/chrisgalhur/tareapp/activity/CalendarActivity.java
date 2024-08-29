@@ -9,9 +9,17 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.chrisgalhur.tareapp.R;
+import com.chrisgalhur.tareapp.presenter.CalendarPresenter;
+import com.chrisgalhur.tareapp.presenter.CalendarPresenterImpl;
+import com.chrisgalhur.tareapp.view.CalendarView;
 
-public class CalendarActivity extends AppCompatActivity {
+public class CalendarActivity extends AppCompatActivity implements CalendarView {
 
+    //region INJECTION
+    private CalendarPresenter presenter;
+    //endregion INJECTION
+
+    //region ON_CREATE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +30,9 @@ public class CalendarActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        presenter = new CalendarPresenterImpl(this);
+
+        
     }
 }

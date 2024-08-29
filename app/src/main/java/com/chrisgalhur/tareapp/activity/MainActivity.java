@@ -14,12 +14,16 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.preference.MyPreferences;
+import com.chrisgalhur.tareapp.presenter.MainPresenter;
+import com.chrisgalhur.tareapp.presenter.MainPresenterImpl;
 import com.chrisgalhur.tareapp.util.BaseActivity;
+import com.chrisgalhur.tareapp.view.MainView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MainView {
 
     //region INJECTION
     private MyPreferences preferences;
+    private MainPresenter presenter;
     //endregion INJECTION
 
     //region UI
@@ -41,6 +45,7 @@ public class MainActivity extends BaseActivity {
         });
 
         preferences = new MyPreferences(this);
+        presenter = new MainPresenterImpl(this);
 
         if (preferences.isFirstTimeLaunch()) {
             launchOnboardingActivity();
@@ -51,26 +56,11 @@ public class MainActivity extends BaseActivity {
         btToOnboarding = findViewById(R.id.btnToOnboardingMain);
         ivPreference = findViewById(R.id.ivPreferenceMain);
 
-        btnToCalendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CalendarActivity.class));
-            }
-        });
+        btnToCalendar.setOnClickListener(v -> presenter.onBtnToCalendarClicked());
 
-        btToOnboarding.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchOnboardingActivity();
-            }
-        });
+        btToOnboarding.setOnClickListener(v -> launchOnboardingActivity());
 
-        ivPreference.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, PreferenceActivity.class));
-            }
-        });
+        ivPreference.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, PreferenceActivity.class)));
     }
     //endregion ON_CREATE
 
@@ -80,4 +70,20 @@ public class MainActivity extends BaseActivity {
         startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
     }
     //endregion LAUNCH_ONBOARDING_ACTIVITY
+
+    //region NAVIGATE_TO_CALENDAR
+    @Override
+    public void navigateToCalendar() {
+        Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+        startActivity(intent);
+    }
+    //endregion NAVIGATE_TO_CALENDAR
+
+    //region NAVIGATE_TO_PREFERENCES
+    @Override
+    public void navigateToPreferences() {
+        Intent intent = new Intent(MainActivity.this, PreferenceActivity.class);
+        startActivity(intent);
+    }
+    //endregion NAVIGATE_TO_PREFERENCES
 }

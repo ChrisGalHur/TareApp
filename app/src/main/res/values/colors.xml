@@ -2,10 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_blue">#AAC4FE</color>
+    <color name="light_blue">#A3CEF1</color>
     <color name="medium_blue">#7F9CEC</color>
     <color name="dark_blue">#5D7EAB</color>
     <color name="tabSelectorColorPrimary">#FF6200EE</color>
     <color name="tabSelectorColorSecondary">#B087EA</color>
-    <color name="test_green">#7269E680</color>
+    <color name="test_green">#A4D4AE</color>
+    <color name="dark_blue_two">#3B6978</color>
 </resources>

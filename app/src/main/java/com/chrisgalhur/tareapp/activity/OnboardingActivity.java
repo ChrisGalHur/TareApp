@@ -2,6 +2,7 @@ package com.chrisgalhur.tareapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,22 +14,21 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.chrisgalhur.tareapp.R;
+import com.chrisgalhur.tareapp.presenter.OnBoardingPresenterImpl;
+import com.chrisgalhur.tareapp.presenter.OnboardingPresenter;
 import com.chrisgalhur.tareapp.util.BaseActivity;
-import com.chrisgalhur.tareapp.util.OnBoardingFragment;
+import com.chrisgalhur.tareapp.util.OnboardingFragment;
 import com.chrisgalhur.tareapp.util.MyViewPagerAdapter;
+import com.chrisgalhur.tareapp.view.OnboardingView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OnboardingActivity extends BaseActivity {
+public class OnboardingActivity extends BaseActivity implements OnboardingView {
 
     //region INJECTION
-    private MyViewPagerAdapter myViewPagerAdapter;
+    private OnboardingPresenter presenter;
     //endregion INJECTION
-
-    //region VARIABLES
-    private List<Fragment> fragmentList = new ArrayList<>();
-    //endregion VARIABLES
 
     //region UI
     private ViewPager2 viewPager;
@@ -54,6 +54,8 @@ public class OnboardingActivity extends BaseActivity {
             return insets;
         });
 
+        presenter = new OnBoardingPresenterImpl(this);
+
         viewPager = findViewById(R.id.viewPagerOnboarding);
         ivDiamond = findViewById(R.id.ivDiamond1FragmentOnBoarding);
         ivDiamond2 = findViewById(R.id.ivDiamond2FragmentOnBoarding);
@@ -64,48 +66,85 @@ public class OnboardingActivity extends BaseActivity {
         tvSkipBack = findViewById(R.id.tvSkipOnBoarding);
         tvNextFinish = findViewById(R.id.tvNextOnBoarding);
 
-        fillFragmentList();
-        MyViewPagerAdapter myViewPagerAdapter = new MyViewPagerAdapter(this, fragmentList);
-        viewPager.setAdapter(myViewPagerAdapter);
-
-        myViewPagerAdapter = new MyViewPagerAdapter(this, fragmentList);
-        viewPager.setAdapter(myViewPagerAdapter);
+        presenter.loadFragments();
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
 
-                updateTextViewListeners(position);
-                setDiamondPosition(position);
+                presenter.updateView(position);
             }
         });
     }
     //endregion ON_CREATE
 
-    //region UPDATE_TEXT_VIEW_LISTENERS
-    private void updateTextViewListeners(int position) {
-        if (position == 0){
-            tvSkipBack.setOnClickListener(v -> launchMainActivity());
-            tvNextFinish.setOnClickListener(v -> viewPager.setCurrentItem(+ 1));
-            tvSkipBack.setText("Skip");
-            tvNextFinish.setText("Next");
-        } else if (position == 4){
-            tvSkipBack.setOnClickListener(v -> viewPager.setCurrentItem(viewPager.getCurrentItem() - 1));
-            tvNextFinish.setOnClickListener(v -> launchMainActivity());
-            tvSkipBack.setText("Back");
-            tvNextFinish.setText("Finish");
-        } else {
-            tvSkipBack.setOnClickListener(v -> viewPager.setCurrentItem(viewPager.getCurrentItem() - 1));
-            tvNextFinish.setOnClickListener(v -> viewPager.setCurrentItem(viewPager.getCurrentItem() + 1));
-            tvSkipBack.setText("Back");
-            tvNextFinish.setText("Next");
-        }
+    //region SHOW_SCREEN
+    @Override
+    public void showScreen(int position) {
+        viewPager.setCurrentItem(position);
     }
-    //endregion UPDATE_TEXT_VIEW_LISTENERS
+    //endregion SHOW_SCREEN
 
-    //region SET_DIAMOND_POSITION
-    private void setDiamondPosition(int position) {
+    //region SHOW_ERROR
+    @Override
+    public void showError() {
+        //todo don't have thought of this yet
+    }
+    //endregion SHOW_ERROR
+
+    //region NAVIGATE_TO_MAIN
+    @Override
+    public void navigateToMain() {
+        startActivity(new Intent(OnboardingActivity.this, MainActivity.class));
+    }
+    //endregion NAVIGATE_TO_MAIN
+
+    //region SET_SKIP_BACK_ON_CLICK_LISTENER
+    @Override
+    public void setSkipBackOnClickListener(View.OnClickListener listener) {
+        tvSkipBack.setOnClickListener(listener);
+    }
+    //endregion SET_SKIP_BACK_ON_CLICK_LISTENER
+
+    //region SET_NEXT_FINISH_ON_CLICK_LISTENER
+    @Override
+    public void setNextFinishOnClickListener(View.OnClickListener listener) {
+        tvNextFinish.setOnClickListener(listener);
+    }
+    //endregion SET_NEXT_FINISH_ON_CLICK_LISTENER
+
+    //region SET_SKIP_BACK_TEXT
+    @Override
+    public void setSkipBackText(String text) {
+        tvSkipBack.setText(text);
+    }
+    //endregion SET_SKIP_BACK_TEXT
+
+    //region SET_NEXT_FINISH_TEXT
+    @Override
+    public void setNextFinishText(String text) {
+        tvNextFinish.setText(text);
+    }
+    //endregion SET_NEXT_FINISH_TEXT
+
+    //region SET_CURRENT_ITEM
+    @Override
+    public void setCurrentItem(int item) {
+        viewPager.setCurrentItem(item);
+    }
+    //endregion SET_CURRENT_ITEM
+
+    //region GET_CURRENT_ITEM
+    @Override
+    public int getCurrentItem() {
+        return viewPager.getCurrentItem();
+    }
+    //endregion GET_CURRENT_ITEM
+
+    //region SET_DIAMOND_IMAGE
+    @Override
+    public void setDiamondImage(int position) {
         switch (position){
             case 0:
                 ivDiamond.setImageResource(R.drawable.test_diamond_filled);
@@ -113,7 +152,7 @@ public class OnboardingActivity extends BaseActivity {
                 ivDiamond3.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond4.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond5.setImageResource(R.drawable.test_diamond_empty);
-                tvSkipTop.setVisibility(TextView.INVISIBLE);
+                tvSkipTop.setVisibility(View.INVISIBLE);
                 break;
             case 1:
                 ivDiamond.setImageResource(R.drawable.test_diamond_empty);
@@ -121,7 +160,7 @@ public class OnboardingActivity extends BaseActivity {
                 ivDiamond3.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond4.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond5.setImageResource(R.drawable.test_diamond_empty);
-                tvSkipTop.setVisibility(TextView.VISIBLE);
+                tvSkipTop.setVisibility(View.VISIBLE);
                 break;
             case 2:
                 ivDiamond.setImageResource(R.drawable.test_diamond_empty);
@@ -129,7 +168,7 @@ public class OnboardingActivity extends BaseActivity {
                 ivDiamond3.setImageResource(R.drawable.test_diamond_filled);
                 ivDiamond4.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond5.setImageResource(R.drawable.test_diamond_empty);
-                tvSkipTop.setVisibility(TextView.VISIBLE);
+                tvSkipTop.setVisibility(View.VISIBLE);
                 break;
             case 3:
                 ivDiamond.setImageResource(R.drawable.test_diamond_empty);
@@ -137,7 +176,7 @@ public class OnboardingActivity extends BaseActivity {
                 ivDiamond3.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond4.setImageResource(R.drawable.test_diamond_filled);
                 ivDiamond5.setImageResource(R.drawable.test_diamond_empty);
-                tvSkipTop.setVisibility(TextView.VISIBLE);
+                tvSkipTop.setVisibility(View.VISIBLE);
                 break;
             case 4:
                 ivDiamond.setImageResource(R.drawable.test_diamond_empty);
@@ -145,33 +184,22 @@ public class OnboardingActivity extends BaseActivity {
                 ivDiamond3.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond4.setImageResource(R.drawable.test_diamond_empty);
                 ivDiamond5.setImageResource(R.drawable.test_diamond_filled);
-                tvSkipTop.setVisibility(TextView.INVISIBLE);
+                tvSkipTop.setVisibility(View.INVISIBLE);
                 break;
             default:
                 break;
         }
     }
-    //endregion SET_DIAMOND_POSITION
+    //endregion SET_DIAMOND_IMAGE
 
-    //region FILL_FRAGMENT_LIST
-    private void fillFragmentList() {
-        OnBoardingFragment firstFragment = OnBoardingFragment.newInstance("0");
-        OnBoardingFragment secondFragment = OnBoardingFragment.newInstance("1");
-        OnBoardingFragment thirdFragment = OnBoardingFragment.newInstance("2");
-        OnBoardingFragment fourthFragment = OnBoardingFragment.newInstance("3");
-        OnBoardingFragment fifthFragment = OnBoardingFragment.newInstance("4");
-
-        fragmentList.add(firstFragment);
-        fragmentList.add(secondFragment);
-        fragmentList.add(thirdFragment);
-        fragmentList.add(fourthFragment);
-        fragmentList.add(fifthFragment);
+    //region SET_FRAGMENTS
+    @Override
+    public void setFragments(List<Fragment> fragments) {
+        MyViewPagerAdapter myViewPagerAdapter;
+        List<Fragment> fragmentList;
+        fragmentList = fragments;
+        myViewPagerAdapter = new MyViewPagerAdapter(this, fragmentList);
+        viewPager.setAdapter(myViewPagerAdapter);
     }
-    //endregion FILL_FRAGMENT_LIST
-
-    //region LAUNCH_MAIN_ACTIVITY
-    private void launchMainActivity() {
-        startActivity(new Intent(OnboardingActivity.this, MainActivity.class));
-    }
-    //endregion LAUNCH_MAIN_ACTIVITY
+    //endregion SET_FRAGMENTS
 }
