@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.chrisgalhur.tareapp.R;
+import com.chrisgalhur.tareapp.dialog.NewTaskDialogFragment;
 import com.chrisgalhur.tareapp.preference.MyPreferences;
 import com.chrisgalhur.tareapp.presenter.MainPresenter;
 import com.chrisgalhur.tareapp.presenter.MainPresenterImpl;
@@ -30,6 +31,7 @@ public class MainActivity extends BaseActivity implements MainView {
     private Button btnToCalendar;
     private Button btToOnboarding;
     private ImageView ivPreference;
+    private ImageView ivNewTask;
     //endregion UI
 
     //region ON_CREATE
@@ -55,12 +57,15 @@ public class MainActivity extends BaseActivity implements MainView {
         btnToCalendar = findViewById(R.id.btnToCalendarMain);
         btToOnboarding = findViewById(R.id.btnToOnboardingMain);
         ivPreference = findViewById(R.id.ivPreferenceMain);
+        ivNewTask = findViewById(R.id.ivNewTaskMain);
 
         btnToCalendar.setOnClickListener(v -> presenter.onBtnToCalendarClicked());
 
         btToOnboarding.setOnClickListener(v -> launchOnboardingActivity());
 
-        ivPreference.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, PreferenceActivity.class)));
+        ivPreference.setOnClickListener(v -> presenter.onBtnToPreferencesClicked());
+
+        ivNewTask.setOnClickListener(v -> presenter.onBtnNewTaskClicked());
     }
     //endregion ON_CREATE
 
@@ -86,4 +91,13 @@ public class MainActivity extends BaseActivity implements MainView {
         startActivity(intent);
     }
     //endregion NAVIGATE_TO_PREFERENCES
+
+    //region OPEN_NEW_TASK_DIALOG
+    @Override
+    public void openNewTaskDialog() {
+        NewTaskDialogFragment dialog = new NewTaskDialogFragment();
+        dialog.show(getSupportFragmentManager(), "NewTaskDialogFragment");
+    }
+    //endregion OPEN_NEW_TASK_DIALOG
+
 }

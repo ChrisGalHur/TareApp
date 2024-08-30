@@ -33,6 +33,6 @@ public class CalendarActivity extends AppCompatActivity implements CalendarView 
 
         presenter = new CalendarPresenterImpl(this);
 
-        
+
     }
 }

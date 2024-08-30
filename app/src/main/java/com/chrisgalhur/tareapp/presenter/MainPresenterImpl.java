@@ -30,7 +30,11 @@ public class MainPresenterImpl implements MainPresenter{
     }
     //endregion ON_BTN_TO_PREFERENCES_CLICKED
 
-
-
+    //region ON_BTN_NEW_TASK_CLICKED
+    @Override
+    public void onBtnNewTaskClicked() {
+        view.openNewTaskDialog();
+    }
+    //endregion ON_BTN_NEW_TASK_CLICKED
 
 }
