@@ -1,5 +1,6 @@
 package com.chrisgalhur.tareapp.dialog;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.chrisgalhur.tareapp.R;
+import com.chrisgalhur.tareapp.activity.FormReminderActivity;
 import com.chrisgalhur.tareapp.presenter.NewTaskPresenter;
 import java.util.List;
 
@@ -40,7 +42,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskAdapter.TaskViewHolder holder, int position) {
         Log.d("'/'/ TASK ADAPTER", "onBindViewHolder: " + position);
         String appTask = appTasks.get(position);
-        holder.bind(appTask);
+        holder.tvTaskName.setText(appTask);
+
+        holder.tvTaskName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                switch (appTask) {
+                    case "Recordatorio":
+                        intent = new Intent(v.getContext(), FormReminderActivity.class);
+                        break;
+                    default:
+                        return;
+                }
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

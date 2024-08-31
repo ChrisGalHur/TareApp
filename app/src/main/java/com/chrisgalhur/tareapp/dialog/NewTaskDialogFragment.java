@@ -7,6 +7,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,18 +29,6 @@ public class NewTaskDialogFragment extends DialogFragment implements NewTaskView
     private TaskAdapter adapter;
     //endregion INJECTION
 
-    //region ON_START
-    @Override
-    public void onStart() {
-        super.onStart();
-        Dialog dialog = getDialog();
-        if(dialog != null){
-            int width = ViewGroup.LayoutParams.MATCH_PARENT;
-            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            dialog.getWindow().setLayout(width, height);
-            dialog.getWindow().setGravity(Gravity.BOTTOM);
-        }
-    }
     //region ON_CREATE_VIEW
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,4 +59,31 @@ public class NewTaskDialogFragment extends DialogFragment implements NewTaskView
     }
     //endregion UPDATE_TASKS
 
+    //region ON_RESUME
+    public void onResume() {
+        super.onResume();
+
+        Window window = getDialog().getWindow();
+        if (window != null) {
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.width = WindowManager.LayoutParams.MATCH_PARENT;
+            params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            //margin top
+            params.y = 100;
+            params.gravity = Gravity.CENTER_VERTICAL;
+            params.horizontalMargin = 0;
+            params.verticalMargin = 0;
+            window.setAttributes(params);
+        }
+    }
+    //endregion ON_RESUME
+
+    //region ON_CREATE_DIALOG
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        return dialog;
+    }
+    //endregion ON_CREATE_DIALOG
 }
