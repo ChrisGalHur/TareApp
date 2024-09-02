@@ -1,18 +1,50 @@
 package com.chrisgalhur.tareapp.activity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.chrisgalhur.tareapp.R;
+import com.chrisgalhur.tareapp.presenter.FormReminderPresenter;
+import com.chrisgalhur.tareapp.presenter.FormReminderPresenterImpl;
 import com.chrisgalhur.tareapp.util.BaseActivity;
+import com.chrisgalhur.tareapp.util.DatePickerUtil;
+import com.chrisgalhur.tareapp.util.TimePickerUtil;
+import com.chrisgalhur.tareapp.view.FormReminderView;
+import com.google.android.material.textfield.TextInputEditText;
 
-public class FormReminderActivity extends BaseActivity {
+import java.util.Calendar;
 
+public class FormReminderActivity extends BaseActivity implements FormReminderView {
+
+    //region INJECTION
+    private FormReminderPresenter presenter;
+    //endregion INJECTION
+
+    //region VARIABLES
+    private int formYear;
+    private int formMonth;
+    private int formDay;
+    private int formHour;
+    private int formMinute;
+    //endregion VARIABLES
+
+    //region UI
+    private TextInputEditText textInReminderName;
+    private Button btSelectDate;
+    private Button btSelectTime;
+    private TextView btnCancel;
+    private TextView btnAccept;
+    //endregion UI
+
+    //region ON_CREATE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +55,59 @@ public class FormReminderActivity extends BaseActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        presenter = new FormReminderPresenterImpl(this);
+        btSelectDate = findViewById(R.id.btSelectDateFormReminder);
+        btSelectTime = findViewById(R.id.btSelectTimeFormReminder);
+        textInReminderName = findViewById(R.id.textInReminderNameFormReminder);
+        btnCancel = findViewById(R.id.btnCancelFormReminder);
+        btnAccept = findViewById(R.id.btnAcceptFormReminder);
+        //Cambiar el color de fondo de los botones
+        //btSelectDate.setBackgroundResource(R.color.dark_blue);
+
+        btSelectDate.setOnClickListener(v -> presenter.onBtSelectDateClicked());
+
+        btSelectTime.setOnClickListener(v -> presenter.onBtSelectTimeClicked());
+
+        btnCancel.setOnClickListener(v -> finish());
+
+        btnAccept.setOnClickListener(v -> presenter.onBtnAcceptClicked());
     }
+    //endregion ON_CREATE
+
+    //region OPEN_DATE_PICKER
+    @Override
+    public void openDatePicker() {
+        DatePickerUtil.openDatePicker(this, new DatePickerUtil.DatePickerListener() {
+            @Override
+            public void onDateSelected(int year, int month, int day) {
+                formYear = year;
+                formMonth = month;
+                formDay = day;
+                btSelectDate.setText(day + "/" + month + "/" + year);
+            }
+        });
+    }
+    //endregion OPEN_DATE_PICKER
+
+    //region OPEN_TIME_PICKER
+    @Override
+    public void openTimePicker() {
+        TimePickerUtil.openTimePicker(this, new TimePickerUtil.TimePickerListener() {
+            @Override
+            public void onTimeSelected(int hour, int minute) {
+                formHour = hour;
+                formMinute = minute;
+                btSelectTime.setText(hour + ":" + minute);
+            }
+        });
+    }
+    //endregion OPEN_TIME_PICKER
+
+    //region SAVE_REMINDER
+    @Override
+    public void saveReminder() {
+        // TODO: 02/09/2024 Implementar
+    }
+    //endregion SAVE_REMINDER
 }

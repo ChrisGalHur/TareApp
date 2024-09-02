@@ -14,4 +14,7 @@
     <string name="accept">Accept</string>
     <string name="cancel">Cancel</string>
     <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="today">Today</string>
+    <string name="select">Select</string>
 </resources>

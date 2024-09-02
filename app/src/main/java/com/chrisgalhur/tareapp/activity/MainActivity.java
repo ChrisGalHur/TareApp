@@ -46,6 +46,9 @@ public class MainActivity extends BaseActivity implements MainView {
             return insets;
         });
 
+        //ACTIVITY WORKING
+        startActivity(new Intent(MainActivity.this, FormReminderActivity.class));
+
         preferences = new MyPreferences(this);
         presenter = new MainPresenterImpl(this);
 
