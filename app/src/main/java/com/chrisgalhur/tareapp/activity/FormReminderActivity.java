@@ -1,9 +1,7 @@
 package com.chrisgalhur.tareapp.activity;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -20,7 +18,7 @@ import com.chrisgalhur.tareapp.util.TimePickerUtil;
 import com.chrisgalhur.tareapp.view.FormReminderView;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 public class FormReminderActivity extends BaseActivity implements FormReminderView {
 
@@ -62,8 +60,6 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
         textInReminderName = findViewById(R.id.textInReminderNameFormReminder);
         btnCancel = findViewById(R.id.btnCancelFormReminder);
         btnAccept = findViewById(R.id.btnAcceptFormReminder);
-        //Cambiar el color de fondo de los botones
-        //btSelectDate.setBackgroundResource(R.color.dark_blue);
 
         btSelectDate.setOnClickListener(v -> presenter.onBtSelectDateClicked());
 
@@ -106,8 +102,25 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
 
     //region SAVE_REMINDER
     @Override
-    public void saveReminder() {
-        // TODO: 02/09/2024 Implementar
+    public void sendReminder() {
+
+        if(!btSelectDate.getText().toString().contains("/")) {
+            LocalDateTime now = LocalDateTime.now();
+            formYear = now.getYear();
+            formMonth = now.getMonthValue();
+            formDay = now.getDayOfMonth();
+        }
+
+        presenter.saveReminder(
+                textInReminderName.getText().toString(),
+                //todo: añadir description,
+                false,
+                formYear,
+                formMonth,
+                formDay,
+                formHour,
+                formMinute
+        );
     }
     //endregion SAVE_REMINDER
 }

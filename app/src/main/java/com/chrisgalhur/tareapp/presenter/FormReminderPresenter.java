@@ -6,4 +6,6 @@ public interface FormReminderPresenter {
     void onBtSelectTimeClicked();
 
     void onBtnAcceptClicked();
+
+    void saveReminder(String reminderName, int year, int month, int day, int hour, int minute);
 }

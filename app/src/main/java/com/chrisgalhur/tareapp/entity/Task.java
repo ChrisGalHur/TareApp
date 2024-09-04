@@ -1,15 +1,24 @@
-package com.chrisgalhur.tareapp.model;
+package com.chrisgalhur.tareapp.entity;
+
+import androidx.room.ColumnInfo;
+import androidx.room.PrimaryKey;
 
 public abstract class Task {
 
     //region PROPERTIES
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private int id;
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "description")
     private String description;
+    @ColumnInfo(name = "completed")
     private boolean completed;
     //endregion PROPERTIES
 
     //region CONSTRUCTOR
-    public Task(String name, String description, boolean completed) {
+    protected Task(String name, String description, boolean completed) {
         this.name = name;
         this.description = description;
         this.completed = completed;

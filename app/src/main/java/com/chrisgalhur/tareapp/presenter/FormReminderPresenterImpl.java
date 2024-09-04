@@ -27,7 +27,12 @@ public class FormReminderPresenterImpl implements FormReminderPresenter {
 
     @Override
     public void onBtnAcceptClicked() {
-        view.saveReminder();
+        view.sendReminder();
+    }
+
+    @Override
+    public void saveReminder(String reminderName, int year, int month, int day, int hour, int minute) {
+
     }
     //endregion ON_BT_SELECT_DATE_CLICKED
 }

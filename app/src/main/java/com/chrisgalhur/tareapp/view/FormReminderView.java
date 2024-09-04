@@ -5,5 +5,5 @@ public interface FormReminderView {
 
     void openTimePicker();
 
-    void saveReminder();
+    void sendReminder();
 }

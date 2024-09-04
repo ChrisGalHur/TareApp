@@ -1,10 +1,15 @@
-package com.chrisgalhur.tareapp.model;
+package com.chrisgalhur.tareapp.entity;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 
 import java.time.LocalDateTime;
 
-public class Reminder extends Task{
+@Entity(tableName = "Reminder")
+public class Reminder extends Task {
 
     //region PROPERTIES
+    @ColumnInfo(name = "reminder_date")
     private LocalDateTime reminderDate;
     //endregion PROPERTIES
 
