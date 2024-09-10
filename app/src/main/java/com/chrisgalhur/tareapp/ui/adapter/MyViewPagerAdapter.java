@@ -1,4 +1,4 @@
-package com.chrisgalhur.tareapp.util;
+package com.chrisgalhur.tareapp.ui.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

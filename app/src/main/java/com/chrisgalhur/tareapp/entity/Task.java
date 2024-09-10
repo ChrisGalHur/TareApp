@@ -3,17 +3,19 @@ package com.chrisgalhur.tareapp.entity;
 import androidx.room.ColumnInfo;
 import androidx.room.PrimaryKey;
 
+import com.chrisgalhur.tareapp.database.DatabaseConstants;
+
 public abstract class Task {
 
     //region PROPERTIES
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = DatabaseConstants.COLUMN_TASK_ID)
     private int id;
-    @ColumnInfo(name = "name")
+    @ColumnInfo(name = DatabaseConstants.COLUMN_TASK_NAME)
     private String name;
-    @ColumnInfo(name = "description")
+    @ColumnInfo(name = DatabaseConstants.COLUMN_TASK_DESCRIPTION)
     private String description;
-    @ColumnInfo(name = "completed")
+    @ColumnInfo(name = DatabaseConstants.COLUMN_TASK_COMPLETED)
     private boolean completed;
     //endregion PROPERTIES
 
@@ -26,6 +28,10 @@ public abstract class Task {
     //endregion CONSTRUCTOR
 
     //region GETTERS
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -40,6 +46,10 @@ public abstract class Task {
     //endregion GETTERS
 
     //region SETTERS
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.chrisgalhur.tareapp.R;
-import com.chrisgalhur.tareapp.activity.FormReminderActivity;
+import com.chrisgalhur.tareapp.ui.activity.FormReminderActivity;
 import com.chrisgalhur.tareapp.presenter.NewTaskPresenter;
 import java.util.List;
 

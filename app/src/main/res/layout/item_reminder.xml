@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:src="@drawable/watch"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/ivTimeFormReminder"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+                android:id="@+id/tvReminderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"
+                android:text="00/00/0000"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivTimeFormReminder"
+                android:layout_marginStart="10dp" />
+
+        <TextView
+                android:id="@+id/tvReminderTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="00:00"
+                android:layout_marginEnd="20dp" />
+
+        <TextView
+                android:id="@+id/tvReminderName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TEST"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/tvReminderDate"
+                app:layout_constraintStart_toStartOf="@+id/tvReminderDate"
+                android:layout_marginTop="10dp" />
+
+        <TextView
+                android:id="@+id/tvReminderDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Description"
+                app:layout_constraintTop_toBottomOf="@+id/tvReminderName"
+                app:layout_constraintStart_toStartOf="@+id/tvReminderName"
+                android:layout_marginTop="5dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/view"
+            android:background="@color/dark_blue"
+            android:layout_marginTop="5dp"/>
+
+
+</LinearLayout>

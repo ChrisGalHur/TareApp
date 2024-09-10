@@ -1,5 +1,7 @@
 package com.chrisgalhur.tareapp.model;
 
+import com.chrisgalhur.tareapp.entity.Reminder;
+
 public interface FormReminderModel {
-    void saveReminder(String name, String description, boolean completed, String reminderDate);
+    void saveReminder(Reminder reminderToSave);
 }

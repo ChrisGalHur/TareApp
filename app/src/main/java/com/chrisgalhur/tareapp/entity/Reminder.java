@@ -3,13 +3,15 @@ package com.chrisgalhur.tareapp.entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 
+import com.chrisgalhur.tareapp.database.DatabaseConstants;
+
 import java.time.LocalDateTime;
 
-@Entity(tableName = "Reminder")
+@Entity(tableName = DatabaseConstants.TABLE_REMINDER)
 public class Reminder extends Task {
 
     //region PROPERTIES
-    @ColumnInfo(name = "reminder_date")
+    @ColumnInfo(name = DatabaseConstants.COLUMN_REMINDER_DATE)
     private LocalDateTime reminderDate;
     //endregion PROPERTIES
 

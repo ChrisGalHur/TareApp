@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.chrisgalhur.tareapp.database.DatabaseConstants;
 import com.chrisgalhur.tareapp.entity.Reminder;
 
 import java.util.List;
@@ -14,6 +15,6 @@ public interface ReminderDao {
     @Insert
     void insert(Reminder reminder);
 
-    @Query("SELECT * FROM Reminder")
+    @Query("SELECT * FROM " + DatabaseConstants.TABLE_REMINDER)
     List<Reminder> getAll();
 }

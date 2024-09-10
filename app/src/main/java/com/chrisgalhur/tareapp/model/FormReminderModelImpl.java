@@ -1,18 +1,24 @@
 package com.chrisgalhur.tareapp.model;
 
+import android.content.Context;
+
+import com.chrisgalhur.tareapp.database.DatabaseHelper;
+import com.chrisgalhur.tareapp.entity.Reminder;
+
 public class FormReminderModelImpl implements FormReminderModel {
-    //region INJECTION
-    //endregion INJECTION
+
+    private final DatabaseHelper databaseHelper;
 
     //region CONSTRUCTOR
-    public FormReminderModelImpl() {
+    public FormReminderModelImpl(Context context) {
+        databaseHelper = DatabaseHelper.getInstance(context);
     }
     //endregion CONSTRUCTOR
 
     //region SAVE_REMINDER
     @Override
-    public void saveReminder(String name, String description, boolean completed, String reminderDate) {
-
+    public void saveReminder(Reminder reminderToSave) {
+        databaseHelper.saveReminder(reminderToSave);
     }
     //endregion SAVE_REMINDER
 }

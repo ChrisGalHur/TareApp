@@ -1,8 +1,10 @@
-package com.chrisgalhur.tareapp.activity;
+package com.chrisgalhur.tareapp.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.core.graphics.Insets;
@@ -10,6 +12,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.chrisgalhur.tareapp.R;
+import com.chrisgalhur.tareapp.entity.Reminder;
+import com.chrisgalhur.tareapp.model.FormReminderModel;
+import com.chrisgalhur.tareapp.model.FormReminderModelImpl;
 import com.chrisgalhur.tareapp.presenter.FormReminderPresenter;
 import com.chrisgalhur.tareapp.presenter.FormReminderPresenterImpl;
 import com.chrisgalhur.tareapp.util.BaseActivity;
@@ -23,10 +28,13 @@ import java.time.LocalDateTime;
 public class FormReminderActivity extends BaseActivity implements FormReminderView {
 
     //region INJECTION
+    private FormReminderModel model;
     private FormReminderPresenter presenter;
     //endregion INJECTION
 
     //region VARIABLES
+    private String reminderName;
+    private String reminderDescription;
     private int formYear;
     private int formMonth;
     private int formDay;
@@ -36,6 +44,7 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
 
     //region UI
     private TextInputEditText textInReminderName;
+    private TextInputEditText textInReminderDescription;
     private Button btSelectDate;
     private Button btSelectTime;
     private TextView btnCancel;
@@ -54,10 +63,12 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
             return insets;
         });
 
-        presenter = new FormReminderPresenterImpl(this);
+        model = new FormReminderModelImpl(this);
+        presenter = new FormReminderPresenterImpl(this, model);
+        textInReminderName = findViewById(R.id.textInReminderNameFormReminder);
+        textInReminderDescription = findViewById(R.id.textInReminderDescriptionFormReminder);
         btSelectDate = findViewById(R.id.btSelectDateFormReminder);
         btSelectTime = findViewById(R.id.btSelectTimeFormReminder);
-        textInReminderName = findViewById(R.id.textInReminderNameFormReminder);
         btnCancel = findViewById(R.id.btnCancelFormReminder);
         btnAccept = findViewById(R.id.btnAcceptFormReminder);
 
@@ -103,6 +114,14 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
     //region SAVE_REMINDER
     @Override
     public void sendReminder() {
+        String name = textInReminderName.getText().toString().trim();
+        String description = textInReminderDescription.getText().toString().trim();
+
+        if(name.isEmpty()) {
+            textInReminderName.setError("Name is required");
+            textInReminderName.setHintTextColor(getResources().getColor(R.color.red));
+            return;
+        }
 
         if(!btSelectDate.getText().toString().contains("/")) {
             LocalDateTime now = LocalDateTime.now();
@@ -111,9 +130,17 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
             formDay = now.getDayOfMonth();
         }
 
+        if (!btSelectTime.getText().toString().contains(":")) {
+            //mensaje de error desde strings
+            Toast.makeText(this, R.string.error_time, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        LocalDateTime localDateTimeReminder = LocalDateTime.of(formYear, formMonth, formDay, formHour, formMinute);
+        Reminder reminder = new Reminder(name, description, false, localDateTimeReminder);
         presenter.saveReminder(
-                textInReminderName.getText().toString(),
-                //todo: añadir description,
+                name,
+                description,
                 false,
                 formYear,
                 formMonth,
@@ -121,6 +148,9 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
                 formHour,
                 formMinute
         );
+
+        Intent intent = new Intent(FormReminderActivity.this, MainActivity.class);
+        startActivity(intent);
     }
     //endregion SAVE_REMINDER
 }

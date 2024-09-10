@@ -16,16 +16,16 @@
                 android:name=".activity.FormReminderActivityNew"
                 android:exported="false" />
         <activity
-                android:name=".activity.FormReminderActivity"
+                android:name=".ui.activity.FormReminderActivity"
                 android:exported="false" />
         <activity
-                android:name=".activity.PreferenceActivity"
+                android:name=".ui.activity.PreferenceActivity"
                 android:exported="false" />
         <activity
-                android:name=".activity.CalendarActivity"
+                android:name=".ui.activity.CalendarActivity"
                 android:exported="false" />
         <activity
-                android:name=".activity.MainActivity"
+                android:name=".ui.activity.MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".activity.OnboardingActivity"
+                android:name=".ui.activity.OnboardingActivity"
                 android:exported="true" />
     </application>
 

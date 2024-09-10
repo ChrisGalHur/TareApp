@@ -1,4 +1,4 @@
-package com.chrisgalhur.tareapp.activity;
+package com.chrisgalhur.tareapp.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +17,9 @@ import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.presenter.OnBoardingPresenterImpl;
 import com.chrisgalhur.tareapp.presenter.OnboardingPresenter;
 import com.chrisgalhur.tareapp.util.BaseActivity;
-import com.chrisgalhur.tareapp.util.OnboardingFragment;
-import com.chrisgalhur.tareapp.util.MyViewPagerAdapter;
+import com.chrisgalhur.tareapp.ui.adapter.MyViewPagerAdapter;
 import com.chrisgalhur.tareapp.view.OnboardingView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OnboardingActivity extends BaseActivity implements OnboardingView {

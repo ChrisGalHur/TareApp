@@ -1,4 +1,4 @@
-package com.chrisgalhur.tareapp.activity;
+package com.chrisgalhur.tareapp.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

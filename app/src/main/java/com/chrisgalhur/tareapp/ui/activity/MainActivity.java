@@ -1,31 +1,43 @@
-package com.chrisgalhur.tareapp.activity;
+package com.chrisgalhur.tareapp.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.chrisgalhur.tareapp.R;
+import com.chrisgalhur.tareapp.database.AppDatabase;
+import com.chrisgalhur.tareapp.database.DatabaseConstants;
 import com.chrisgalhur.tareapp.dialog.NewTaskDialogFragment;
+import com.chrisgalhur.tareapp.entity.Reminder;
 import com.chrisgalhur.tareapp.preference.MyPreferences;
 import com.chrisgalhur.tareapp.presenter.MainPresenter;
 import com.chrisgalhur.tareapp.presenter.MainPresenterImpl;
 import com.chrisgalhur.tareapp.util.BaseActivity;
+import com.chrisgalhur.tareapp.ui.adapter.ReminderAdapter;
 import com.chrisgalhur.tareapp.view.MainView;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity implements MainView {
 
-    //region INJECTION
+    //region PROPERTIES
+    private static final String TAG = "'/'/ MainActivity";
+    private RecyclerView recyclerViewReminders;
+    private ReminderAdapter reminderAdapter;
+    private AppDatabase db;
     private MyPreferences preferences;
     private MainPresenter presenter;
-    //endregion INJECTION
+    //endregion PROPERTIES
 
     //region UI
     private Button btnToCalendar;
@@ -47,7 +59,13 @@ public class MainActivity extends BaseActivity implements MainView {
         });
 
         //ACTIVITY WORKING
-        startActivity(new Intent(MainActivity.this, FormReminderActivity.class));
+        //startActivity(new Intent(MainActivity.this, FormReminderActivity.class));
+
+        recyclerViewReminders = findViewById(R.id.recyclerViewRemindersMain);
+        recyclerViewReminders.setLayoutManager(new LinearLayoutManager(this));
+
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, DatabaseConstants.DATABASE_NAME).build();
+        loadReminders();
 
         preferences = new MyPreferences(this);
         presenter = new MainPresenterImpl(this);
@@ -103,4 +121,20 @@ public class MainActivity extends BaseActivity implements MainView {
     }
     //endregion OPEN_NEW_TASK_DIALOG
 
+    //region LOAD_REMINDERS
+    private void loadReminders() {
+        new Thread(() -> {
+            try {
+                List<Reminder> reminders = db.reminderDao().getAll();
+                Log.d(TAG, "Reminders loaded: " + reminders.size());
+                runOnUiThread(() -> {
+                    reminderAdapter = new ReminderAdapter(reminders);
+                    recyclerViewReminders.setAdapter(reminderAdapter);
+                });
+            } catch (Exception e) {
+                Log.e(TAG, "Error loading reminders", e);
+            }
+        }).start();
+    }
+    //endregion LOAD_REMINDERS
 }

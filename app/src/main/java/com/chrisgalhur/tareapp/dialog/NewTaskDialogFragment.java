@@ -24,6 +24,7 @@ import java.util.List;
 public class NewTaskDialogFragment extends DialogFragment implements NewTaskView {
 
     //region INJECTION
+    private static final String TAG = "'/'/ NewTaskDialogFragment";
     private NewTaskPresenter presenter;
     private RecyclerView recyclerView;
     private TaskAdapter adapter;
@@ -32,7 +33,7 @@ public class NewTaskDialogFragment extends DialogFragment implements NewTaskView
     //region ON_CREATE_VIEW
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("'/'/ NEW TASK DIALOG", "onCreateView");
+        Log.d(TAG, "onCreateView");
 
         View view = inflater.inflate(R.layout.dialog_new_task, container, false);
 
