@@ -50,5 +50,9 @@ public class DatabaseHelper {
             }
         });
     }
+
+    public Reminder getReminder(int reminderId) {
+        return appDatabase.reminderDao().getReminder(reminderId);
+    }
     //endregion SAVE_REMINDER
 }

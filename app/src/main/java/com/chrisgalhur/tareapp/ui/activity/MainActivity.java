@@ -1,5 +1,6 @@
 package com.chrisgalhur.tareapp.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,6 +46,13 @@ public class MainActivity extends BaseActivity implements MainView {
     private ImageView ivPreference;
     private ImageView ivNewTask;
     //endregion UI
+
+    //region GET_CONTEXT
+    @Override
+    public Context getContext() {
+        return this;
+    }
+    //endregion GET_CONTEXT
 
     //region ON_CREATE
     @Override
@@ -128,7 +136,7 @@ public class MainActivity extends BaseActivity implements MainView {
                 List<Reminder> reminders = db.reminderDao().getAll();
                 Log.d(TAG, "Reminders loaded: " + reminders.size());
                 runOnUiThread(() -> {
-                    reminderAdapter = new ReminderAdapter(reminders);
+                    reminderAdapter = new ReminderAdapter(reminders, position -> presenter.onReminderClicked(reminders.get(position).getId()));
                     recyclerViewReminders.setAdapter(reminderAdapter);
                 });
             } catch (Exception e) {
@@ -137,4 +145,12 @@ public class MainActivity extends BaseActivity implements MainView {
         }).start();
     }
     //endregion LOAD_REMINDERS
+
+    //region ON_REMINDER_CLICKED
+    @Override
+    public void navigateToReminder(int reminderId) {
+        Intent intent = new Intent(MainActivity.this, FormReminderActivity.class);
+        intent.putExtra("reminder", reminderId);
+        startActivity(intent);
+    }
 }

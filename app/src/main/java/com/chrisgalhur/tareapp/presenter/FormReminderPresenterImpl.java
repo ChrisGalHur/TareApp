@@ -44,4 +44,12 @@ public class FormReminderPresenterImpl implements FormReminderPresenter {
         model.saveReminder(reminder);
     }
     //endregion ON_BT_SELECT_DATE_CLICKED
+
+    //region LOAD_REMINDER
+    @Override
+    public void loadReminder(int reminderId) {
+        Reminder reminder = model.getReminder(reminderId);
+        view.loadReminder(reminder);
+    }
+    //endregion LOAD_REMINDER
 }

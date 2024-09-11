@@ -20,5 +20,10 @@ public class FormReminderModelImpl implements FormReminderModel {
     public void saveReminder(Reminder reminderToSave) {
         databaseHelper.saveReminder(reminderToSave);
     }
+
+    @Override
+    public Reminder getReminder(int reminderId) {
+        return databaseHelper.getReminder(reminderId);
+    }
     //endregion SAVE_REMINDER
 }

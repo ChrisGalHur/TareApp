@@ -1,7 +1,8 @@
 package com.chrisgalhur.tareapp.presenter;
 
-import android.view.View;
+import android.content.Intent;
 
+import com.chrisgalhur.tareapp.ui.activity.FormReminderActivity;
 import com.chrisgalhur.tareapp.view.MainView;
 
 public class MainPresenterImpl implements MainPresenter{
@@ -36,5 +37,14 @@ public class MainPresenterImpl implements MainPresenter{
         view.openNewTaskDialog();
     }
     //endregion ON_BTN_NEW_TASK_CLICKED
+
+    //region ON_REMINDER_CLICKED
+    @Override
+    public void onReminderClicked(int reminderId) {
+        Intent intent = new Intent(view.getContext(), FormReminderActivity.class);
+        intent.putExtra("reminderId", reminderId);
+        view.getContext().startActivity(intent);
+    }
+    //endregion ON_REMINDER_CLICKED
 
 }

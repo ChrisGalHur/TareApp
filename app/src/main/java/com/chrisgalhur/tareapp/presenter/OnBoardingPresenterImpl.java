@@ -2,7 +2,7 @@ package com.chrisgalhur.tareapp.presenter;
 
 import androidx.fragment.app.Fragment;
 
-import com.chrisgalhur.tareapp.util.OnboardingFragment;
+import com.chrisgalhur.tareapp.ui.fragment.OnboardingFragment;
 import com.chrisgalhur.tareapp.view.OnboardingView;
 
 import java.util.ArrayList;

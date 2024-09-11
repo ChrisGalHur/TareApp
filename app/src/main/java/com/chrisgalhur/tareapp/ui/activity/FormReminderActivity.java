@@ -43,8 +43,8 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
     //endregion VARIABLES
 
     //region UI
-    private TextInputEditText textInReminderName;
-    private TextInputEditText textInReminderDescription;
+    private TextInputEditText etReminderName;
+    private TextInputEditText etReminderDescription;
     private Button btSelectDate;
     private Button btSelectTime;
     private TextView btnCancel;
@@ -65,12 +65,17 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
 
         model = new FormReminderModelImpl(this);
         presenter = new FormReminderPresenterImpl(this, model);
-        textInReminderName = findViewById(R.id.textInReminderNameFormReminder);
-        textInReminderDescription = findViewById(R.id.textInReminderDescriptionFormReminder);
+        etReminderName = findViewById(R.id.textInReminderNameFormReminder);
+        etReminderDescription = findViewById(R.id.textInReminderDescriptionFormReminder);
         btSelectDate = findViewById(R.id.btSelectDateFormReminder);
         btSelectTime = findViewById(R.id.btSelectTimeFormReminder);
         btnCancel = findViewById(R.id.btnCancelFormReminder);
         btnAccept = findViewById(R.id.btnAcceptFormReminder);
+
+        int reminderId = getIntent().getIntExtra("ReminderId", -1);
+        if(reminderId != -1) {
+            presenter.loadReminder(reminderId);
+        }
 
         btSelectDate.setOnClickListener(v -> presenter.onBtSelectDateClicked());
 
@@ -114,12 +119,12 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
     //region SAVE_REMINDER
     @Override
     public void sendReminder() {
-        String name = textInReminderName.getText().toString().trim();
-        String description = textInReminderDescription.getText().toString().trim();
+        String name = etReminderName.getText().toString().trim();
+        String description = etReminderDescription.getText().toString().trim();
 
         if(name.isEmpty()) {
-            textInReminderName.setError("Name is required");
-            textInReminderName.setHintTextColor(getResources().getColor(R.color.red));
+            etReminderName.setError("Name is required");
+            etReminderName.setHintTextColor(getResources().getColor(R.color.red));
             return;
         }
 
@@ -153,4 +158,19 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
         startActivity(intent);
     }
     //endregion SAVE_REMINDER
+
+    //region LOAD_REMINDER
+    @Override
+    public void loadReminder(Reminder reminder) {
+        etReminderName.setText(reminder.getName());
+        etReminderDescription.setText(reminder.getDescription());
+        LocalDateTime reminderDate = reminder.getReminderDate();
+        formYear = reminderDate.getYear();
+        formMonth = reminderDate.getMonthValue();
+        formDay = reminderDate.getDayOfMonth();
+        formHour = reminderDate.getHour();
+        formMinute = reminderDate.getMinute();
+        btSelectDate.setText(formDay + "/" + formMonth + "/" + formYear);
+        btSelectTime.setText(formHour + ":" + formMinute);
+    }
 }

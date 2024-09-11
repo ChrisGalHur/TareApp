@@ -1,4 +1,4 @@
-package com.chrisgalhur.tareapp.util;
+package com.chrisgalhur.tareapp.ui.fragment;
 
 import android.os.Bundle;
 
