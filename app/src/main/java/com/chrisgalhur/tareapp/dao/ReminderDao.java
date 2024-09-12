@@ -20,4 +20,7 @@ public interface ReminderDao {
 
     @Query("SELECT * FROM " + DatabaseConstants.TABLE_REMINDER + " WHERE " + DatabaseConstants.COLUMN_TASK_ID + " = :reminderId")
     Reminder getReminder(int reminderId);
+
+    @Query("DELETE FROM " + DatabaseConstants.TABLE_REMINDER + " WHERE " + DatabaseConstants.COLUMN_TASK_ID + " = :reminderId")
+    int deleteById(int reminderId);
 }

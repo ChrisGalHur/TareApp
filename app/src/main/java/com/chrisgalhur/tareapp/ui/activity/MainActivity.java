@@ -98,6 +98,14 @@ public class MainActivity extends BaseActivity implements MainView {
     }
     //endregion ON_CREATE
 
+    //region ON_RESUME
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadReminders();
+    }
+    //endregion ON_RESUME
+
     //region LAUNCH_ONBOARDING_ACTIVITY
     private void launchOnboardingActivity() {
         preferences.setFirstTimeLaunch(false);
@@ -145,12 +153,4 @@ public class MainActivity extends BaseActivity implements MainView {
         }).start();
     }
     //endregion LOAD_REMINDERS
-
-    //region ON_REMINDER_CLICKED
-    @Override
-    public void navigateToReminder(int reminderId) {
-        Intent intent = new Intent(MainActivity.this, FormReminderActivity.class);
-        intent.putExtra("reminder", reminderId);
-        startActivity(intent);
-    }
 }

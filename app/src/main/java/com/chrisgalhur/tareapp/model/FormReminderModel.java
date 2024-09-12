@@ -2,8 +2,14 @@ package com.chrisgalhur.tareapp.model;
 
 import com.chrisgalhur.tareapp.entity.Reminder;
 
-public interface FormReminderModel {
-    void saveReminder(Reminder reminderToSave);
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
 
-    Reminder getReminder(int reminderId);
+public interface FormReminderModel {
+
+    Single<Reminder> getReminder(int reminderId);
+
+    Completable saveReminder(Reminder reminderToSave);
+
+    Single<Integer> deleteReminder(int reminderId);
 }

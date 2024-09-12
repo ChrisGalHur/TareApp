@@ -2,6 +2,7 @@ package com.chrisgalhur.tareapp.presenter;
 
 import android.content.Intent;
 
+import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.ui.activity.FormReminderActivity;
 import com.chrisgalhur.tareapp.view.MainView;
 
@@ -42,9 +43,8 @@ public class MainPresenterImpl implements MainPresenter{
     @Override
     public void onReminderClicked(int reminderId) {
         Intent intent = new Intent(view.getContext(), FormReminderActivity.class);
-        intent.putExtra("reminderId", reminderId);
+        intent.putExtra(view.getContext().getString(R.string.extra_reminder_id), reminderId);
         view.getContext().startActivity(intent);
     }
     //endregion ON_REMINDER_CLICKED
-
 }

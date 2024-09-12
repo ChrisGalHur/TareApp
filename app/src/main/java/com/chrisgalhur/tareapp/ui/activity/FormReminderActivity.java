@@ -1,12 +1,13 @@
 package com.chrisgalhur.tareapp.ui.activity;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -43,6 +44,8 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
     //endregion VARIABLES
 
     //region UI
+    private TextView tvTitle;
+    private CardView btDeleteReminder;
     private TextInputEditText etReminderName;
     private TextInputEditText etReminderDescription;
     private Button btSelectDate;
@@ -50,6 +53,13 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
     private TextView btnCancel;
     private TextView btnAccept;
     //endregion UI
+
+    //region GET_CONTEXT
+    @Override
+    public Context getContext() {
+        return this;
+    }
+    //endregion GET_CONTEXT
 
     //region ON_CREATE
     @Override
@@ -65,6 +75,9 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
 
         model = new FormReminderModelImpl(this);
         presenter = new FormReminderPresenterImpl(this, model);
+
+        tvTitle = findViewById(R.id.tvTitleFormReminder);
+        btDeleteReminder = findViewById(R.id.btDeleteReminderFormReminder);
         etReminderName = findViewById(R.id.textInReminderNameFormReminder);
         etReminderDescription = findViewById(R.id.textInReminderDescriptionFormReminder);
         btSelectDate = findViewById(R.id.btSelectDateFormReminder);
@@ -72,10 +85,19 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
         btnCancel = findViewById(R.id.btnCancelFormReminder);
         btnAccept = findViewById(R.id.btnAcceptFormReminder);
 
-        int reminderId = getIntent().getIntExtra("ReminderId", -1);
-        if(reminderId != -1) {
+
+        int reminderId = getIntent().getIntExtra(getString(R.string.extra_reminder_id), -1);
+
+        if(reminderId != -1) { // Adecuamos la vista para editar un recordatorio
+            tvTitle.setText(R.string.title_edit_reminder);
+            btDeleteReminder.setVisibility(android.view.View.VISIBLE);
+            btDeleteReminder.setOnClickListener(v -> presenter.onBtDeleteReminderClicked(reminderId));
             presenter.loadReminder(reminderId);
+        }else { // Adecuamos la vista para crear un nuevo recordatorio
+            tvTitle.setText(R.string.title_new_reminder);
+            btDeleteReminder.setVisibility(android.view.View.GONE);
         }
+
 
         btSelectDate.setOnClickListener(v -> presenter.onBtSelectDateClicked());
 
@@ -86,6 +108,14 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
         btnAccept.setOnClickListener(v -> presenter.onBtnAcceptClicked());
     }
     //endregion ON_CREATE
+
+    //region ON_DESTROY
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.clearDisposables();
+    }
+    //endregion ON_DESTROY
 
     //region OPEN_DATE_PICKER
     @Override
@@ -116,9 +146,9 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
     }
     //endregion OPEN_TIME_PICKER
 
-    //region SAVE_REMINDER
+    //region SEND_REMINDER_SAVE
     @Override
-    public void sendReminder() {
+    public void sendReminderSave() {
         String name = etReminderName.getText().toString().trim();
         String description = etReminderDescription.getText().toString().trim();
 
@@ -154,10 +184,8 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
                 formMinute
         );
 
-        Intent intent = new Intent(FormReminderActivity.this, MainActivity.class);
-        startActivity(intent);
     }
-    //endregion SAVE_REMINDER
+    //endregion SEND_REMINDER_SAVE
 
     //region LOAD_REMINDER
     @Override
@@ -173,4 +201,20 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
         btSelectDate.setText(formDay + "/" + formMonth + "/" + formYear);
         btSelectTime.setText(formHour + ":" + formMinute);
     }
+    //endregion LOAD_REMINDER
+
+    //region SHOW_ERROR
+    @Override
+    public void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+    //endregion SHOW_ERROR
+
+    //region SHOW_SUCCESS
+    @Override
+    public void showSuccess(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        finish();
+    }
+    //endregion SHOW_SUCCESS
 }

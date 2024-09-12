@@ -7,5 +7,4 @@ public interface MainView {
     void navigateToCalendar();
     void navigateToPreferences();
     void openNewTaskDialog();
-    void navigateToReminder(int reminderId);
 }

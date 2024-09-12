@@ -32,6 +32,30 @@
                 android:layout_marginBottom="5dp" />
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+            android:id="@+id/btDeleteReminderFormReminder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:backgroundTint="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toTopOf="@+id/cardViewTitleFormReminder"
+            app:layout_constraintBottom_toBottomOf="@+id/cardViewTitleFormReminder">
+
+        <TextView
+                android:text="@string/delete_reminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDeleteReminderFormReminder"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp" />
+    </androidx.cardview.widget.CardView>
+
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutNameFormReminder"
             android:layout_width="0dp"
