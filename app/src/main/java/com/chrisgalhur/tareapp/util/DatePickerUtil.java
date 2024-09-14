@@ -2,7 +2,10 @@ package com.chrisgalhur.tareapp.util;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.view.ContextThemeWrapper;
 import android.widget.DatePicker;
+
+import com.chrisgalhur.tareapp.R;
 
 import java.util.Calendar;
 
@@ -21,7 +24,7 @@ public class DatePickerUtil {
 
         //Crerate instance of DatePickerDialog and show it
         DatePickerDialog datePickerDialog = new DatePickerDialog(
-            context,
+            new ContextThemeWrapper(context, R.style.CustomDatePicker),
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {

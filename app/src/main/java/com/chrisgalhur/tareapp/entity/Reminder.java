@@ -2,6 +2,7 @@ package com.chrisgalhur.tareapp.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 
 import com.chrisgalhur.tareapp.database.DatabaseConstants;
 
@@ -16,8 +17,14 @@ public class Reminder extends Task {
     //endregion PROPERTIES
 
     //region CONSTRUCTOR
+    @Ignore
     public Reminder(String name, String description, boolean completed, LocalDateTime reminderDate) {
         super(name, description, completed);
+        this.reminderDate = reminderDate;
+    }
+
+    public Reminder(int id, String name, String description, boolean completed, LocalDateTime reminderDate) {
+        super(id, name, description, completed);
         this.reminderDate = reminderDate;
     }
     //endregion CONSTRUCTOR

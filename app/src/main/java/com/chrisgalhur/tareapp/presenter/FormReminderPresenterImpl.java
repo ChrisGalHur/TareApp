@@ -60,6 +60,21 @@ public class FormReminderPresenterImpl implements FormReminderPresenter {
     }
     //endregion SAVE_REMINDER
 
+    //region UPDATE_REMINDER
+    @Override
+    public void updateReminder(int reminderId, String reminderName, String description, boolean completed, int year, int month, int day, int hour, int minute) {
+        LocalDateTime date = LocalDateTime.of(year, month, day, hour, minute);
+        Reminder reminder = new Reminder(reminderId, reminderName, description, completed, date);
+        Disposable disposable = model.updateReminder(reminder)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> view.showSuccess(view.getContext().getString(R.string.success_reminder_updated)),
+                        throwable -> view.showError(throwable.getMessage())
+                );
+        disposables.add(disposable);
+    }
+
     //region LOAD_REMINDER
     @Override
     public void loadReminder(int reminderId) {

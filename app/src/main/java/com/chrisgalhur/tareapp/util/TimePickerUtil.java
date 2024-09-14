@@ -2,7 +2,10 @@ package com.chrisgalhur.tareapp.util;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.view.ContextThemeWrapper;
 import android.widget.TimePicker;
+
+import com.chrisgalhur.tareapp.R;
 
 import java.util.Calendar;
 
@@ -20,7 +23,7 @@ public class TimePickerUtil {
 
         //Create instance of TimePickerDialog and show it
         TimePickerDialog timePickerDialog = new TimePickerDialog(
-            context,
+            new ContextThemeWrapper(context, R.style.CustomTimePicker),
             new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {

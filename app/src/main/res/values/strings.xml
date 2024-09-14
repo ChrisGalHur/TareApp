@@ -34,4 +34,5 @@
     <string name="title_edit_reminder">Edit Reminder</string>
     <string name="success_reminder_saved">Reminder Saved</string>
     <string name="success_reminder_deleted">Reminder Deleted</string>
+    <string name="success_reminder_updated">Reminder updated</string>
 </resources>

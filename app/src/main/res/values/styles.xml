@@ -10,4 +10,18 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <!-- Tema personalizado para el TimePicker -->
+    <style name="CustomTimePicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/dark_blue</item>
+        <item name="android:textColorPrimary">@color/light_blue</item>
+        <item name="android:textColorSecondary">@color/medium_blue</item>
+    </style>
+
+    <!-- Tema personalizado para el DatePicker -->
+    <style name="CustomDatePicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/dark_blue</item>
+        <item name="android:textColorPrimary">@color/light_blue</item>
+        <item name="android:textColorSecondary">@color/medium_blue</item>
+    </style>
+
 </resources>

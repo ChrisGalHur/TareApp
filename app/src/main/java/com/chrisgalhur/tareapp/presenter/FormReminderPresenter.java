@@ -10,6 +10,8 @@ public interface FormReminderPresenter {
 
     void saveReminder(String reminderName, String string, boolean b, int year, int month, int day, int hour, int minute);
 
+    void updateReminder(int reminderId, String reminderName, String description, boolean completed, int year, int month, int day, int hour, int minute);
+
     void loadReminder(int reminderId);
 
     void clearDisposables();

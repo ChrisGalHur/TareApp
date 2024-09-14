@@ -1,6 +1,7 @@
 package com.chrisgalhur.tareapp.entity;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.chrisgalhur.tareapp.database.DatabaseConstants;
@@ -20,7 +21,15 @@ public abstract class Task {
     //endregion PROPERTIES
 
     //region CONSTRUCTOR
+    @Ignore
     protected Task(String name, String description, boolean completed) {
+        this.name = name;
+        this.description = description;
+        this.completed = completed;
+    }
+
+    protected Task(int id, String name, String description, boolean completed) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.completed = completed;

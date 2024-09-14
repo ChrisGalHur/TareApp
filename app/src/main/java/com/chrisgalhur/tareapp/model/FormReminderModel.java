@@ -7,9 +7,11 @@ import io.reactivex.rxjava3.core.Single;
 
 public interface FormReminderModel {
 
-    Single<Reminder> getReminder(int reminderId);
-
     Completable saveReminder(Reminder reminderToSave);
+
+    Completable updateReminder(Reminder reminderToUpdate);
+
+    Single<Reminder> getReminder(int reminderId);
 
     Single<Integer> deleteReminder(int reminderId);
 }

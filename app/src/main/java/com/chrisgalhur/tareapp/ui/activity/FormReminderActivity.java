@@ -140,7 +140,8 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
             public void onTimeSelected(int hour, int minute) {
                 formHour = hour;
                 formMinute = minute;
-                btSelectTime.setText(hour + ":" + minute);
+                String formattedTime = String.format("%02d:%02d", hour, minute);
+                btSelectTime.setText(formattedTime);
             }
         });
     }
@@ -171,19 +172,32 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
             return;
         }
 
-        LocalDateTime localDateTimeReminder = LocalDateTime.of(formYear, formMonth, formDay, formHour, formMinute);
-        Reminder reminder = new Reminder(name, description, false, localDateTimeReminder);
-        presenter.saveReminder(
-                name,
-                description,
-                false,
-                formYear,
-                formMonth,
-                formDay,
-                formHour,
-                formMinute
-        );
+        int reminderId = getIntent().getIntExtra(getString(R.string.extra_reminder_id), -1);
 
+        if(reminderId != -1) {
+            presenter.updateReminder(
+                    reminderId,
+                    name,
+                    description,
+                    false,
+                    formYear,
+                    formMonth,
+                    formDay,
+                    formHour,
+                    formMinute
+            );
+        }else {
+            presenter.saveReminder(
+                    name,
+                    description,
+                    false,
+                    formYear,
+                    formMonth,
+                    formDay,
+                    formHour,
+                    formMinute
+            );
+        }
     }
     //endregion SEND_REMINDER_SAVE
 
@@ -198,8 +212,8 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
         formDay = reminderDate.getDayOfMonth();
         formHour = reminderDate.getHour();
         formMinute = reminderDate.getMinute();
-        btSelectDate.setText(formDay + "/" + formMonth + "/" + formYear);
-        btSelectTime.setText(formHour + ":" + formMinute);
+        btSelectDate.setText(String.format("%02d/%02d/%02d", formDay, formMonth, formYear));
+        btSelectTime.setText(String.format("%02d:%02d", formHour, formMinute));
     }
     //endregion LOAD_REMINDER
 

@@ -15,6 +15,8 @@ public interface ReminderDao {
     @Insert
     void insert(Reminder reminder);
 
+    @Query("UPDATE " + DatabaseConstants.TABLE_REMINDER + " SET " + DatabaseConstants.COLUMN_TASK_NAME + " = :name, " + DatabaseConstants.COLUMN_TASK_DESCRIPTION + " = :description, " + DatabaseConstants.COLUMN_REMINDER_DATE + " = :date WHERE " + DatabaseConstants.COLUMN_TASK_ID + " = :taskId")
+    void updateReminder(int taskId, String name, String description, long date);
     @Query("SELECT * FROM " + DatabaseConstants.TABLE_REMINDER)
     List<Reminder> getAll();
 

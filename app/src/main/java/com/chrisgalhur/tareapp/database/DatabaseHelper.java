@@ -7,6 +7,7 @@ import androidx.room.Room;
 
 import com.chrisgalhur.tareapp.entity.Reminder;
 
+import java.time.ZoneOffset;
 import java.util.concurrent.Executors;
 
 public class DatabaseHelper {
@@ -57,6 +58,19 @@ public class DatabaseHelper {
         return appDatabase.reminderDao().getReminder(reminderId);
     }
     //endregion GET_REMINDER
+
+    //region UPDATE_REMINDER
+    public void updateReminder(Reminder reminder) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            try {
+                appDatabase.reminderDao().updateReminder(reminder.getId(), reminder.getName(), reminder.getDescription(), reminder.getReminderDate().toEpochSecond(ZoneOffset.UTC));
+                Log.d(TAG, "Reminder updated successfully " + reminder.getName());
+            } catch (Exception e) {
+                Log.e(TAG, "Error updating reminder " + reminder.getName(), e);
+            }
+        });
+    }
+    //endregion UPDATE_REMINDER
 
     //region DELETE_REMINDER
     public int deleteReminder(int reminderId) {
