@@ -1,11 +1,12 @@
 package com.chrisgalhur.tareapp.presenter;
 
+import com.chrisgalhur.tareapp.presenter.interf.NewTaskPresenter;
 import com.chrisgalhur.tareapp.view.NewTaskView;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class NewTaskPresenterImpl implements NewTaskPresenter{
+public class NewTaskPresenterImpl implements NewTaskPresenter {
 
     //region INJECTION
     private final NewTaskView view;

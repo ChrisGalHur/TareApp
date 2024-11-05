@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
     <application
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,8 +17,8 @@
             android:theme="@style/Theme.Tareapp"
             tools:targetApi="31">
         <activity
-                android:name=".activity.FormReminderActivityNew"
-                android:exported="false" />
+                android:name=".ui.activity.StopAlarmActivity"
+                android:exported="true" />
         <activity
                 android:name=".ui.activity.FormReminderActivity"
                 android:exported="false" />
@@ -35,6 +39,11 @@
         </activity>
         <activity
                 android:name=".ui.activity.OnboardingActivity"
+                android:exported="true" />
+
+        <receiver android:name=".receiver.ReminderReceiver" />
+        <receiver
+                android:name=".receiver.SilentAlarmReceiver"
                 android:exported="true" />
     </application>
 

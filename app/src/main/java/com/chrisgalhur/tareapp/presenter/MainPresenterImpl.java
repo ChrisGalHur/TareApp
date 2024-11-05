@@ -3,10 +3,11 @@ package com.chrisgalhur.tareapp.presenter;
 import android.content.Intent;
 
 import com.chrisgalhur.tareapp.R;
+import com.chrisgalhur.tareapp.presenter.interf.MainPresenter;
 import com.chrisgalhur.tareapp.ui.activity.FormReminderActivity;
 import com.chrisgalhur.tareapp.view.MainView;
 
-public class MainPresenterImpl implements MainPresenter{
+public class MainPresenterImpl implements MainPresenter {
 
     //region INJECTION
     private final MainView view;

@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.chrisgalhur.tareapp.R;
-import com.chrisgalhur.tareapp.presenter.PreferencePresenter;
+import com.chrisgalhur.tareapp.presenter.interf.PreferencePresenter;
 import com.chrisgalhur.tareapp.presenter.PreferencePresenterImpl;
 import com.chrisgalhur.tareapp.view.PreferenceView;
 

@@ -1,13 +1,24 @@
 package com.chrisgalhur.tareapp.ui.activity;
 
+import android.Manifest;
+import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -21,40 +32,36 @@ import com.chrisgalhur.tareapp.database.DatabaseConstants;
 import com.chrisgalhur.tareapp.dialog.NewTaskDialogFragment;
 import com.chrisgalhur.tareapp.entity.Reminder;
 import com.chrisgalhur.tareapp.preference.MyPreferences;
-import com.chrisgalhur.tareapp.presenter.MainPresenter;
+import com.chrisgalhur.tareapp.presenter.interf.MainPresenter;
 import com.chrisgalhur.tareapp.presenter.MainPresenterImpl;
-import com.chrisgalhur.tareapp.util.BaseActivity;
 import com.chrisgalhur.tareapp.ui.adapter.ReminderAdapter;
+import com.chrisgalhur.tareapp.util.BaseActivity;
+import com.chrisgalhur.tareapp.util.NotificationUtil;
 import com.chrisgalhur.tareapp.view.MainView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements MainView {
 
-    //region PROPERTIES
+    //region CONSTANTS & STATIC PROPERTIES
     private static final String TAG = "'/'/ MainActivity";
+    private static final int REQUEST_CODE_SCHEDULE_EXACT_ALARM = 1;
+    //endregion CONSTANTS & STATIC PROPERTIES
+
+    private ActivityResultLauncher<String> requestPermissionLauncher;
     private RecyclerView recyclerViewReminders;
     private ReminderAdapter reminderAdapter;
     private AppDatabase db;
     private MyPreferences preferences;
     private MainPresenter presenter;
-    //endregion PROPERTIES
 
-    //region UI
     private Button btnToCalendar;
     private Button btToOnboarding;
     private ImageView ivPreference;
     private ImageView ivNewTask;
-    //endregion UI
 
-    //region GET_CONTEXT
-    @Override
-    public Context getContext() {
-        return this;
-    }
-    //endregion GET_CONTEXT
-
-    //region ON_CREATE
+    //region LIFECYCLE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +75,20 @@ public class MainActivity extends BaseActivity implements MainView {
 
         //ACTIVITY WORKING
         //startActivity(new Intent(MainActivity.this, FormReminderActivity.class));
+
+        // PERMISSIONS
+        requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            if (isGranted) {
+                Log.d(TAG, "Permission granted for exact alarm scheduling");
+            } else {
+                Log.d(TAG, "Permission for exact alarm not granted");
+                showPermissionRationale();
+            }
+        });
+
+        requestPermission();
+
+        NotificationUtil.createNotificationChannel(this);
 
         recyclerViewReminders = findViewById(R.id.recyclerViewRemindersMain);
         recyclerViewReminders.setLayoutManager(new LinearLayoutManager(this));
@@ -96,48 +117,96 @@ public class MainActivity extends BaseActivity implements MainView {
 
         ivNewTask.setOnClickListener(v -> presenter.onBtnNewTaskClicked());
     }
-    //endregion ON_CREATE
 
-    //region ON_RESUME
     @Override
     protected void onResume() {
         super.onResume();
         loadReminders();
     }
-    //endregion ON_RESUME
+    //endregion LIFECYCLE
 
-    //region LAUNCH_ONBOARDING_ACTIVITY
-    private void launchOnboardingActivity() {
-        preferences.setFirstTimeLaunch(false);
-        startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
+    //region UI METHODS
+    @Override
+    public Context getContext() {
+        return this;
     }
-    //endregion LAUNCH_ONBOARDING_ACTIVITY
 
-    //region NAVIGATE_TO_CALENDAR
     @Override
     public void navigateToCalendar() {
         Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
         startActivity(intent);
     }
-    //endregion NAVIGATE_TO_CALENDAR
 
-    //region NAVIGATE_TO_PREFERENCES
     @Override
     public void navigateToPreferences() {
         Intent intent = new Intent(MainActivity.this, PreferenceActivity.class);
         startActivity(intent);
     }
-    //endregion NAVIGATE_TO_PREFERENCES
 
-    //region OPEN_NEW_TASK_DIALOG
     @Override
     public void openNewTaskDialog() {
         NewTaskDialogFragment dialog = new NewTaskDialogFragment();
         dialog.show(getSupportFragmentManager(), "NewTaskDialogFragment");
     }
-    //endregion OPEN_NEW_TASK_DIALOG
 
-    //region LOAD_REMINDERS
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_SCHEDULE_EXACT_ALARM) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "Permission granted for exact alarm scheduling");
+            } else {
+                // Permiso denegado
+                showPermissionRationale();
+            }
+        }
+    }
+    //endregion UI METHODS
+
+    //region PERMISSION METHODS
+    private void showPermissionRationale() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission required")
+                    .setMessage("To schedule alarms and reminders, we need your permission. " +
+                            "Follow this steps:\n\n1. Roll window, click on Alarms & Reminders. \n2. Click on Enable permission. \n3. Go back to the app.")
+                    .setPositiveButton("OK", (dialog, which) -> {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivity(intent);
+                    })
+                    .setNegativeButton("Cancel", (dialog, which) -> {
+                        Snackbar.make(findViewById(android.R.id.content), "Without the permission, we don't schedule alarms and reminders", Snackbar.LENGTH_LONG).show();
+                        dialog.dismiss();
+                    })
+                    .show();
+        }
+    }
+
+    private void requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (alarmManager != null && !alarmManager.canScheduleExactAlarms()) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SCHEDULE_EXACT_ALARM)) {
+                    showPermissionRationale();
+                } else {
+                    requestPermissionLauncher.launch(Manifest.permission.SCHEDULE_EXACT_ALARM);
+                    Log.d(TAG, "Requesting permission for exact alarm scheduling");
+                }
+            } else {
+                Log.d(TAG, "Permission already granted for exact alarm scheduling");
+            }
+        }
+    }
+    //endregion PERMISSION METHODS
+
+    //region AUXILIARY PRIVATE METHODS
+    private void launchOnboardingActivity() {
+        preferences.setFirstTimeLaunch(false);
+        startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
+    }
+
     private void loadReminders() {
         new Thread(() -> {
             try {
@@ -152,5 +221,5 @@ public class MainActivity extends BaseActivity implements MainView {
             }
         }).start();
     }
-    //endregion LOAD_REMINDERS
+    //endregion AUXILIARY PRIVATE METHODS
 }

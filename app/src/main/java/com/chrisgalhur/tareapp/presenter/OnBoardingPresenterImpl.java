@@ -2,13 +2,14 @@ package com.chrisgalhur.tareapp.presenter;
 
 import androidx.fragment.app.Fragment;
 
+import com.chrisgalhur.tareapp.presenter.interf.OnboardingPresenter;
 import com.chrisgalhur.tareapp.ui.fragment.OnboardingFragment;
 import com.chrisgalhur.tareapp.view.OnboardingView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OnBoardingPresenterImpl implements OnboardingPresenter{
+public class OnBoardingPresenterImpl implements OnboardingPresenter {
 
     //region INJECTION
     private final OnboardingView view;

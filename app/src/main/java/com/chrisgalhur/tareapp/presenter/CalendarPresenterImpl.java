@@ -1,8 +1,9 @@
 package com.chrisgalhur.tareapp.presenter;
 
+import com.chrisgalhur.tareapp.presenter.interf.CalendarPresenter;
 import com.chrisgalhur.tareapp.view.CalendarView;
 
-public class CalendarPresenterImpl implements CalendarPresenter{
+public class CalendarPresenterImpl implements CalendarPresenter {
 
     //region INJECTION
     private CalendarView view;

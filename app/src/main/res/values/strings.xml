@@ -35,4 +35,8 @@
     <string name="success_reminder_saved">Reminder Saved</string>
     <string name="success_reminder_deleted">Reminder Deleted</string>
     <string name="success_reminder_updated">Reminder updated</string>
+
+    <!-- Notifications -->
+    <string name="channel_reminder">Reminder Channel</string>
+    <string name="channel_reminder_notifications">Channel for reminder notifications</string>
 </resources>

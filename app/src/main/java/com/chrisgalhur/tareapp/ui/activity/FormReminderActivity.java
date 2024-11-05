@@ -14,9 +14,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.entity.Reminder;
-import com.chrisgalhur.tareapp.model.FormReminderModel;
+import com.chrisgalhur.tareapp.model.interf.FormReminderModel;
 import com.chrisgalhur.tareapp.model.FormReminderModelImpl;
-import com.chrisgalhur.tareapp.presenter.FormReminderPresenter;
+import com.chrisgalhur.tareapp.presenter.interf.FormReminderPresenter;
 import com.chrisgalhur.tareapp.presenter.FormReminderPresenterImpl;
 import com.chrisgalhur.tareapp.util.BaseActivity;
 import com.chrisgalhur.tareapp.util.DatePickerUtil;

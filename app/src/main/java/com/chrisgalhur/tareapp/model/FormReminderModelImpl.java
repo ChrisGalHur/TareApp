@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.chrisgalhur.tareapp.database.DatabaseHelper;
 import com.chrisgalhur.tareapp.entity.Reminder;
+import com.chrisgalhur.tareapp.model.interf.FormReminderModel;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;

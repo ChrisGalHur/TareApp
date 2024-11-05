@@ -58,8 +58,30 @@
             android:id="@+id/tvLanguage"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/ivKeyboardPreference"
-            app:layout_constraintTop_toTopOf="@+id/ivKeyboardPreference"
             app:layout_constraintStart_toEndOf="@+id/ivKeyboardPreference"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="@+id/ivKeyboardPreference" />
+
+    <ImageView
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/permissions"
+            android:id="@+id/ivPermissionPreference"
+            app:layout_constraintTop_toBottomOf="@+id/ivKeyboardPreference"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp" />
+
+    <TextView
+            android:text="Permissions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPermissionPreference"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ivPermissionPreference"
+            app:layout_constraintTop_toTopOf="@+id/ivPermissionPreference"
+            app:layout_constraintStart_toEndOf="@+id/ivPermissionPreference"
             android:layout_marginStart="10dp"
             android:textSize="20sp" />
 
@@ -68,7 +90,7 @@
             android:layout_height="40dp"
             app:srcCompat="@drawable/info"
             android:id="@+id/ivInfoPreference"
-            app:layout_constraintTop_toBottomOf="@+id/ivKeyboardPreference"
+            app:layout_constraintTop_toBottomOf="@+id/ivPermissionPreference"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@+id/ivKeyboardPreference" />
 

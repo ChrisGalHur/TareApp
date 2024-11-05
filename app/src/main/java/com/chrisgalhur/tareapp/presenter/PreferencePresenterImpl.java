@@ -1,8 +1,9 @@
 package com.chrisgalhur.tareapp.presenter;
 
+import com.chrisgalhur.tareapp.presenter.interf.PreferencePresenter;
 import com.chrisgalhur.tareapp.view.PreferenceView;
 
-public class PreferencePresenterImpl implements PreferencePresenter{
+public class PreferencePresenterImpl implements PreferencePresenter {
 
     //region INJECTION
     private final PreferenceView view;
