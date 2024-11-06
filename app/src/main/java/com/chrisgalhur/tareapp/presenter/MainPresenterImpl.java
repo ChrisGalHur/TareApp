@@ -19,13 +19,6 @@ public class MainPresenterImpl implements MainPresenter {
     }
     //endregion CONSTRUCTOR
 
-    //region ON_BTN_TO_CALENDAR_CLICKED
-    @Override
-    public void onBtnToCalendarClicked() {
-        view.navigateToCalendar();
-    }
-    //endregion ON_BTN_TO_CALENDAR_CLICKED
-
     //region ON_BTN_TO_PREFERENCES_CLICKED
     @Override
     public void onBtnToPreferencesClicked() {

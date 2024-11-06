@@ -104,14 +104,8 @@ public class MainActivity extends BaseActivity implements MainView {
             finish();
         }
 
-        btnToCalendar = findViewById(R.id.btnToCalendarMain);
-        btToOnboarding = findViewById(R.id.btnToOnboardingMain);
         ivPreference = findViewById(R.id.ivPreferenceMain);
         ivNewTask = findViewById(R.id.ivNewTaskMain);
-
-        btnToCalendar.setOnClickListener(v -> presenter.onBtnToCalendarClicked());
-
-        btToOnboarding.setOnClickListener(v -> launchOnboardingActivity());
 
         ivPreference.setOnClickListener(v -> presenter.onBtnToPreferencesClicked());
 
@@ -129,12 +123,6 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public Context getContext() {
         return this;
-    }
-
-    @Override
-    public void navigateToCalendar() {
-        Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
-        startActivity(intent);
     }
 
     @Override
