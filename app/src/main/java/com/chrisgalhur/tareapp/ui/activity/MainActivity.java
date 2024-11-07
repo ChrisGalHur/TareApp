@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -32,8 +31,8 @@ import com.chrisgalhur.tareapp.database.DatabaseConstants;
 import com.chrisgalhur.tareapp.dialog.NewTaskDialogFragment;
 import com.chrisgalhur.tareapp.entity.Reminder;
 import com.chrisgalhur.tareapp.preference.MyPreferences;
-import com.chrisgalhur.tareapp.presenter.interf.MainPresenter;
 import com.chrisgalhur.tareapp.presenter.MainPresenterImpl;
+import com.chrisgalhur.tareapp.presenter.interf.MainPresenter;
 import com.chrisgalhur.tareapp.ui.adapter.ReminderAdapter;
 import com.chrisgalhur.tareapp.util.BaseActivity;
 import com.chrisgalhur.tareapp.util.NotificationUtil;
@@ -55,9 +54,6 @@ public class MainActivity extends BaseActivity implements MainView {
     private AppDatabase db;
     private MyPreferences preferences;
     private MainPresenter presenter;
-
-    private Button btnToCalendar;
-    private Button btToOnboarding;
     private ImageView ivPreference;
     private ImageView ivNewTask;
 
@@ -74,7 +70,7 @@ public class MainActivity extends BaseActivity implements MainView {
         });
 
         //ACTIVITY WORKING
-        //startActivity(new Intent(MainActivity.this, FormReminderActivity.class));
+        startActivity(new Intent(MainActivity.this, PermissionActivity.class));
 
         // PERMISSIONS
         requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {

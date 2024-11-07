@@ -5,24 +5,26 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.chrisgalhur.tareapp.R;
-import com.chrisgalhur.tareapp.presenter.interf.PreferencePresenter;
 import com.chrisgalhur.tareapp.presenter.PreferencePresenterImpl;
+import com.chrisgalhur.tareapp.presenter.interf.PreferencePresenter;
+import com.chrisgalhur.tareapp.util.BaseActivity;
 import com.chrisgalhur.tareapp.view.PreferenceView;
 
-public class PreferenceActivity extends AppCompatActivity implements PreferenceView {
+public class PreferenceActivity extends BaseActivity implements PreferenceView {
 
-    //region UI
     private ImageView ivBack;
     private PreferencePresenter presenter;
-    //endregion UI
+    private ConstraintLayout languageLayout;
+    private ConstraintLayout permissionsLayout;
+    private ConstraintLayout aboutLayout;
 
-    //region ON_CREATE
+    //region LIFECYCLE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,16 +39,22 @@ public class PreferenceActivity extends AppCompatActivity implements PreferenceV
         presenter = new PreferencePresenterImpl(this);
 
         ivBack = findViewById(R.id.ivBackPreference);
+        languageLayout = findViewById(R.id.constLayLanguagePreference);
+        permissionsLayout = findViewById(R.id.constLayPermissionPreference);
+        aboutLayout = findViewById(R.id.constLayAboutAppPreference);
 
-        ivBack.setOnClickListener(v -> presenter.onBackClicked());
+        ivBack.setOnClickListener(v -> finish());
+        languageLayout.setOnClickListener(v -> presenter.onLanguageClicked());
+        permissionsLayout.setOnClickListener(v -> presenter.onPermissionsClicked());
+        aboutLayout.setOnClickListener(v -> presenter.onAboutClicked());
     }
-    //endregion ON_CREATE
+    //endregion LIFECYCLE
 
-    //region NAVIGATE_TO_MAIN
+    //region UI METHODS
     @Override
-    public void navigateToMain() {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void navigateToPermissions() {
+        Intent intent = new Intent(this, PermissionActivity.class);
         startActivity(intent);
     }
-    //endregion NAVIGATE_TO_MAIN
+    //endregion UI METHODS
 }

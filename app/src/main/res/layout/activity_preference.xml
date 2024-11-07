@@ -30,7 +30,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-            android:text="General"
+            android:text="@string/general"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvTitleGeneralPreference"
@@ -38,70 +38,117 @@
             app:layout_constraintTop_toBottomOf="@+id/ivBackPreference"
             android:textColor="#7A7777"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/ivKeyboardPreference"
-            app:layout_constraintEnd_toEndOf="@+id/ivKeyboardPreference" />
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeftGuidePreference" />
 
-    <ImageView
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/keyboard"
-            android:id="@+id/ivKeyboardPreference"
+    <androidx.constraintlayout.widget.Guideline
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.03"
+            android:id="@+id/guidelineLeftGuidePreference" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeftGuidePreference"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleGeneralPreference"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="10dp" />
+            android:id="@+id/constLayLanguagePreference"
+            android:layout_marginTop="10dp">
 
-    <TextView
-            android:text="Language"
-            android:layout_width="wrap_content"
+        <ImageView
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/keyboard"
+                android:id="@+id/ivKeyboardPreference"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:text="Language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvLanguage"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/ivKeyboardPreference"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="@+id/ivKeyboardPreference"
+                app:layout_constraintStart_toEndOf="@+id/ivKeyboardPreference"
+                android:layout_marginStart="10dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/tvLanguage"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivKeyboardPreference"
-            app:layout_constraintStart_toEndOf="@+id/ivKeyboardPreference"
-            android:layout_marginStart="10dp"
-            android:textSize="20sp"
-            app:layout_constraintTop_toTopOf="@+id/ivKeyboardPreference" />
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeftGuidePreference"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/constLayPermissionPreference"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/constLayLanguagePreference"
+            android:layout_marginTop="10dp">
 
-    <ImageView
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/permissions"
-            android:id="@+id/ivPermissionPreference"
-            app:layout_constraintTop_toBottomOf="@+id/ivKeyboardPreference"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp" />
+        <ImageView
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/permissions"
+                android:id="@+id/ivPermissionPreference"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-    <TextView
-            android:text="Permissions"
-            android:layout_width="wrap_content"
+        <TextView
+                android:text="Permissions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvPermissionPreference"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/ivPermissionPreference"
+                app:layout_constraintTop_toTopOf="@+id/ivPermissionPreference"
+                app:layout_constraintStart_toEndOf="@+id/ivPermissionPreference"
+                android:layout_marginStart="10dp"
+                android:textSize="20sp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/tvPermissionPreference"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivPermissionPreference"
-            app:layout_constraintTop_toTopOf="@+id/ivPermissionPreference"
-            app:layout_constraintStart_toEndOf="@+id/ivPermissionPreference"
-            android:layout_marginStart="10dp"
-            android:textSize="20sp" />
-
-    <ImageView
-            android:layout_width="55dp"
-            android:layout_height="40dp"
-            app:srcCompat="@drawable/info"
-            android:id="@+id/ivInfoPreference"
-            app:layout_constraintTop_toBottomOf="@+id/ivPermissionPreference"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeftGuidePreference"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/constLayPermissionPreference"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@+id/ivKeyboardPreference" />
+            android:id="@+id/constLayAboutAppPreference">
 
-    <TextView
-            android:text="About app"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvAboutAppPreference"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivInfoPreference"
-            app:layout_constraintTop_toTopOf="@+id/ivInfoPreference"
-            app:layout_constraintStart_toStartOf="@+id/tvLanguage"
-            android:textSize="20sp" />
+        <ImageView
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/info"
+                android:id="@+id/ivInfoPreference"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:text="@string/about_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvAboutAppPreference"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/ivInfoPreference"
+                app:layout_constraintTop_toTopOf="@+id/ivInfoPreference"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/ivInfoPreference"
+                android:layout_marginStart="10dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

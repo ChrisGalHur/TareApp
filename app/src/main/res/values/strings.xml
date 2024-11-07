@@ -11,9 +11,11 @@
     <string name="siguiente">Siguiente</string>
     <string name="next">Next</string>
     <string name="preferences">Preferences</string>
+    <string name="permissions">Permissions</string>
     <string name="reminder">Reminder</string>
     <string name="new_reminder">New Reminder</string>
     <string name="accept">Accept</string>
+    <string name="accepted">Accepted</string>
     <string name="cancel">Cancel</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
@@ -35,8 +37,25 @@
     <string name="success_reminder_saved">Reminder Saved</string>
     <string name="success_reminder_deleted">Reminder Deleted</string>
     <string name="success_reminder_updated">Reminder updated</string>
+        <!-- Permissions -->
+    <string name="permission_post_notifications">Post Notifications</string>
+    <string name="permission_post_notifications_description">Allows the app to post notifications</string>
+    <string name="permission_schedule_exact_alarm">Schedule Exact Alarm</string>
+    <string name="permission_schedule_exact_alarm_description">Allows the app to schedule exact alarms</string>
+    <string name="permission_ignore_battery_optimizations">Ignore Battery Optimizations</string>
+    <string name="permission_ignore_battery_optimizations_description">Allows the app to request to ignore battery optimizations</string>
+        <!-- Errors -->
+    <string name="configuration_screen_not_open">Could not open the configuration screen.</string>
+    <string name="address_accept_notifications">Go to app settings and accept notifications</string>
+
+
 
     <!-- Notifications -->
     <string name="channel_reminder">Reminder Channel</string>
     <string name="channel_reminder_notifications">Channel for reminder notifications</string>
+    <string name="schedule_alarm">Schedule Alarm</string>
+    <string name="general">General</string>
+    <string name="about_app">About app</string>
+    <string name="ejemplo">Ejemplo</string>
+
 </resources>

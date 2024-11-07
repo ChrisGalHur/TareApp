@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+    <TextView
+            android:id="@+id/tvPermissionNamePermissionItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingBottom="4dp"
+            android:text="@string/ejemplo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" />
+
+    <TextView
+            android:id="@+id/tvPermissionDescriptionPermissionItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Ejemplo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPermissionNamePermissionItem"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp" />
+
+    <Button
+            android:id="@+id/btnRequestPermissionPermissionItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accept"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="16sp" />
+
+    <TextView
+            android:id="@+id/tvPermissionAcceptedPermissionItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingBottom="4dp"
+            android:text="@string/accepted"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/green_ok"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="10dp" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/viewSeparationPermissionItem"
+            app:layout_constraintEnd_toEndOf="@+id/btnRequestPermissionPermissionItem"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/dark_blue"
+            app:layout_constraintTop_toBottomOf="@+id/tvPermissionDescriptionPermissionItem"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

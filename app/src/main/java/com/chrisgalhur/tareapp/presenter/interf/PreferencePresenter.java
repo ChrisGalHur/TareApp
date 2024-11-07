@@ -1,5 +1,8 @@
 package com.chrisgalhur.tareapp.presenter.interf;
 
 public interface PreferencePresenter {
-    void onBackClicked();
+
+    void onLanguageClicked();
+    void onPermissionsClicked();
+    void onAboutClicked();
 }
