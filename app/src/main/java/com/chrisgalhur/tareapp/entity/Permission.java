@@ -2,9 +2,11 @@ package com.chrisgalhur.tareapp.entity;
 
 public class Permission {
 
-    String name;
-    String description;
-    String realName;
+    private String name;
+    private String description;
+    private String realName;
+    private boolean isGranted;
+
 
     public Permission(String name, String description, String realName) {
         this.name = name;
@@ -22,5 +24,13 @@ public class Permission {
 
     public String getRealName() {
         return realName;
+    }
+
+    public boolean isGranted() {
+        return isGranted;
+    }
+
+    public void setGranted(boolean isGranted) {
+        this.isGranted = isGranted;
     }
 }

@@ -2,6 +2,8 @@ package com.chrisgalhur.tareapp.ui.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,10 @@ public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.Pe
         this.permissions = permissions;
         this.context = context;
         permissionHelper = new PermissionHelper(context);
+
+        for (Permission permission : permissions) {
+            permission.setGranted(permissionHelper.isPermissionGranted(permission.getRealName()));
+        }
     }
 
     @NonNull
@@ -43,6 +49,8 @@ public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.Pe
         holder.tvPermissionName.setText(permission.getName());
 
         updatePermissionStatus(holder, permission);
+
+        holder.btnRequestPermission.setOnClickListener(v -> requestPermission(holder, permission));
     }
 
     @Override
@@ -65,7 +73,12 @@ public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.Pe
                 break;
         }
 
-        updatePermissionStatus(holder, permission);
+        // Update permission status after 1 second
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override public void run() {
+                updatePermissionStatus(holder, permission);
+            }
+        }, 1000); // 1 second
     }
 
     private void updatePermissionStatus(PermissionViewHolder holder, Permission permission) {
@@ -73,18 +86,14 @@ public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.Pe
             holder.tvPermissionName.setTextColor(ContextCompat.getColor(context, R.color.green_ok));
             holder.tvPermissionAccepted.setVisibility(View.VISIBLE);
             holder.tvPermissionDescription.setVisibility(View.GONE);
-            holder.btnRequestPermission.setVisibility(View.GONE);
         } else {
             holder.tvPermissionName.setTextColor(ContextCompat.getColor(context, R.color.red_no_ok));
             holder.tvPermissionAccepted.setVisibility(View.GONE);
             holder.tvPermissionDescription.setText(permission.getDescription());
             holder.btnRequestPermission.setVisibility(View.VISIBLE);
             holder.btnRequestPermission.setVisibility(View.VISIBLE);
-            holder.btnRequestPermission.setOnClickListener(v -> requestPermission(holder, permission));
         }
     }
-
-
 
     public static class PermissionViewHolder extends RecyclerView.ViewHolder {
         TextView tvPermissionName;

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.entity.Permission;
+import com.chrisgalhur.tareapp.presenter.PermissionPresenterImpl;
 import com.chrisgalhur.tareapp.presenter.interf.PermissionPresenter;
 import com.chrisgalhur.tareapp.ui.adapter.PermissionAdapter;
 import com.chrisgalhur.tareapp.util.BaseActivity;
@@ -22,11 +23,12 @@ import java.util.List;
 
 public class PermissionActivity extends BaseActivity implements PermissionView {
 
-    private List<Permission> permissions;
+    private List<Permission> permissions = new ArrayList<>();
     private PermissionAdapter permissionAdapter;
     private PermissionPresenter presenter;
     private ImageView ivBack;
 
+    //region LIFE CYCLE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,6 @@ public class PermissionActivity extends BaseActivity implements PermissionView {
             return insets;
         });
 
-        permissions = new ArrayList<>();
         permissions.add(new Permission(getString(R.string.permission_post_notifications), getString(R.string.permission_post_notifications_description), "android.permission.POST_NOTIFICATIONS"));
         permissions.add(new Permission(getString(R.string.permission_schedule_exact_alarm), getString(R.string.permission_schedule_exact_alarm_description), "android.permission.SCHEDULE_EXACT_ALARM"));
         permissions.add(new Permission(getString(R.string.permission_ignore_battery_optimizations), getString(R.string.permission_ignore_battery_optimizations_description), "android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"));
@@ -48,8 +49,21 @@ public class PermissionActivity extends BaseActivity implements PermissionView {
         permissionAdapter = new PermissionAdapter(permissions, this);
         recyclerViewPermissions.setAdapter(permissionAdapter);
 
+        presenter = new PermissionPresenterImpl(this, this, permissions);
+
         ivBack = findViewById(R.id.ivBackPermission);
 
         ivBack.setOnClickListener(v -> finish());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.updatePermissionsStatus();
+    }
+
+    @Override
+    public void refreshPermissionsList() {
+        permissionAdapter.notifyDataSetChanged();
     }
 }

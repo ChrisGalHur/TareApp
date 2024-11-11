@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity implements MainView {
         });
 
         //ACTIVITY WORKING
-        startActivity(new Intent(MainActivity.this, PermissionActivity.class));
+        //startActivity(new Intent(MainActivity.this, PermissionActivity.class));
 
         // PERMISSIONS
         requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
