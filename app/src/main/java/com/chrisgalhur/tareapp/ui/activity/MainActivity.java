@@ -36,7 +36,7 @@ import com.chrisgalhur.tareapp.presenter.interf.MainPresenter;
 import com.chrisgalhur.tareapp.ui.adapter.ReminderAdapter;
 import com.chrisgalhur.tareapp.util.BaseActivity;
 import com.chrisgalhur.tareapp.util.NotificationUtil;
-import com.chrisgalhur.tareapp.view.MainView;
+import com.chrisgalhur.tareapp.ui.activity.view.MainView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity implements MainView {
         });
 
         //ACTIVITY WORKING
-        //startActivity(new Intent(MainActivity.this, PermissionActivity.class));
+        startActivity(new Intent(MainActivity.this, PreferenceActivity.class));
 
         // PERMISSIONS
         requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {

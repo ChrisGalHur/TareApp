@@ -2,7 +2,10 @@ package com.chrisgalhur.tareapp.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -14,15 +17,15 @@ import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.presenter.PreferencePresenterImpl;
 import com.chrisgalhur.tareapp.presenter.interf.PreferencePresenter;
 import com.chrisgalhur.tareapp.util.BaseActivity;
-import com.chrisgalhur.tareapp.view.PreferenceView;
+import com.chrisgalhur.tareapp.ui.activity.view.PreferenceView;
 
 public class PreferenceActivity extends BaseActivity implements PreferenceView {
 
-    private ImageView ivBack;
     private PreferencePresenter presenter;
-    private ConstraintLayout languageLayout;
+    private ImageView ivBack;
     private ConstraintLayout permissionsLayout;
     private ConstraintLayout aboutLayout;
+    private Spinner spinnerLanguage;
 
     //region LIFECYCLE
     @Override
@@ -36,17 +39,31 @@ public class PreferenceActivity extends BaseActivity implements PreferenceView {
             return insets;
         });
 
-        presenter = new PreferencePresenterImpl(this);
+        presenter = new PreferencePresenterImpl(this, this);
 
         ivBack = findViewById(R.id.ivBackPreference);
-        languageLayout = findViewById(R.id.constLayLanguagePreference);
         permissionsLayout = findViewById(R.id.constLayPermissionPreference);
         aboutLayout = findViewById(R.id.constLayAboutAppPreference);
+        spinnerLanguage = findViewById(R.id.spinnerLanguagePreference);
+
+        spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String[] languageCodes = getResources().getStringArray(R.array.language_values);
+                String selectedLanguage = languageCodes[position];
+                presenter.saveLanguagePreference(selectedLanguage);
+                presenter.applyLanguage(selectedLanguage);
+                recreate(); // Recrea la actividad para aplicar el idioma seleccionado
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         ivBack.setOnClickListener(v -> finish());
-        languageLayout.setOnClickListener(v -> presenter.onLanguageClicked());
         permissionsLayout.setOnClickListener(v -> presenter.onPermissionsClicked());
         aboutLayout.setOnClickListener(v -> presenter.onAboutClicked());
+        presenter.loadLanguagePreference();
     }
     //endregion LIFECYCLE
 
@@ -55,6 +72,16 @@ public class PreferenceActivity extends BaseActivity implements PreferenceView {
     public void navigateToPermissions() {
         Intent intent = new Intent(this, PermissionActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void updateLanguageSelection(int position) {
+        spinnerLanguage.setSelection(position);
+    }
+
+    @Override
+    public void setSpinnerPrompt(String prompt) {
+        spinnerLanguage.setPrompt(prompt);
     }
     //endregion UI METHODS
 }

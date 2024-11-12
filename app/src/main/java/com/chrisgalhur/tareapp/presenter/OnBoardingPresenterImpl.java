@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 
 import com.chrisgalhur.tareapp.presenter.interf.OnboardingPresenter;
 import com.chrisgalhur.tareapp.ui.fragment.OnboardingFragment;
-import com.chrisgalhur.tareapp.view.OnboardingView;
+import com.chrisgalhur.tareapp.ui.activity.view.OnboardingView;
 
 import java.util.ArrayList;
 import java.util.List;

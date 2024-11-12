@@ -1,7 +1,7 @@
 package com.chrisgalhur.tareapp.presenter;
 
 import com.chrisgalhur.tareapp.presenter.interf.CalendarPresenter;
-import com.chrisgalhur.tareapp.view.CalendarView;
+import com.chrisgalhur.tareapp.ui.activity.view.CalendarView;
 
 public class CalendarPresenterImpl implements CalendarPresenter {
 

@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.presenter.interf.NewTaskPresenter;
 import com.chrisgalhur.tareapp.presenter.NewTaskPresenterImpl;
-import com.chrisgalhur.tareapp.view.NewTaskView;
+import com.chrisgalhur.tareapp.ui.activity.view.NewTaskView;
 
 import java.util.List;
 

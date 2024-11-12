@@ -16,7 +16,7 @@ import com.chrisgalhur.tareapp.presenter.PermissionPresenterImpl;
 import com.chrisgalhur.tareapp.presenter.interf.PermissionPresenter;
 import com.chrisgalhur.tareapp.ui.adapter.PermissionAdapter;
 import com.chrisgalhur.tareapp.util.BaseActivity;
-import com.chrisgalhur.tareapp.view.PermissionView;
+import com.chrisgalhur.tareapp.ui.activity.view.PermissionView;
 
 import java.util.ArrayList;
 import java.util.List;

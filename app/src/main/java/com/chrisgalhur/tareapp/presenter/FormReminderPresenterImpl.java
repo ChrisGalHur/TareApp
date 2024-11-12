@@ -11,7 +11,7 @@ import com.chrisgalhur.tareapp.entity.Reminder;
 import com.chrisgalhur.tareapp.model.interf.FormReminderModel;
 import com.chrisgalhur.tareapp.presenter.interf.FormReminderPresenter;
 import com.chrisgalhur.tareapp.receiver.ReminderReceiver;
-import com.chrisgalhur.tareapp.view.FormReminderView;
+import com.chrisgalhur.tareapp.ui.activity.view.FormReminderView;
 
 import java.time.LocalDateTime;
 import java.util.Calendar;

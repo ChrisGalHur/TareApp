@@ -5,7 +5,7 @@ import android.content.Context;
 import com.chrisgalhur.tareapp.entity.Permission;
 import com.chrisgalhur.tareapp.presenter.interf.PermissionPresenter;
 import com.chrisgalhur.tareapp.util.PermissionHelper;
-import com.chrisgalhur.tareapp.view.PermissionView;
+import com.chrisgalhur.tareapp.ui.activity.view.PermissionView;
 
 import java.util.List;
 

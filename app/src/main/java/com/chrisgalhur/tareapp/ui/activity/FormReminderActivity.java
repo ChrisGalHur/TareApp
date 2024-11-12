@@ -21,7 +21,7 @@ import com.chrisgalhur.tareapp.presenter.FormReminderPresenterImpl;
 import com.chrisgalhur.tareapp.util.BaseActivity;
 import com.chrisgalhur.tareapp.util.DatePickerUtil;
 import com.chrisgalhur.tareapp.util.TimePickerUtil;
-import com.chrisgalhur.tareapp.view.FormReminderView;
+import com.chrisgalhur.tareapp.ui.activity.view.FormReminderView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.time.LocalDateTime;

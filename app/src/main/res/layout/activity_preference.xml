@@ -64,7 +64,6 @@
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/keyboard"
                 android:id="@+id/ivKeyboardPreference"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,13 +71,27 @@
                 android:text="Language"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvLanguage"
+                android:id="@+id/tvLanguagePreference"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/ivKeyboardPreference"
                 android:textSize="20sp"
                 app:layout_constraintTop_toTopOf="@+id/ivKeyboardPreference"
                 app:layout_constraintStart_toEndOf="@+id/ivKeyboardPreference"
                 android:layout_marginStart="10dp" />
+
+        <Spinner
+                android:id="@+id/spinnerLanguagePreference"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/language_options"
+                app:layout_constraintTop_toBottomOf="@+id/tvLanguagePreference"
+                app:layout_constraintStart_toStartOf="@+id/tvLanguagePreference"
+                app:layout_constraintEnd_toEndOf="@+id/tvLanguagePreference"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="-80dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="5dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

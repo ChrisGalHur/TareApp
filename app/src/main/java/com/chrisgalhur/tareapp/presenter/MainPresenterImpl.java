@@ -5,7 +5,7 @@ import android.content.Intent;
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.presenter.interf.MainPresenter;
 import com.chrisgalhur.tareapp.ui.activity.FormReminderActivity;
-import com.chrisgalhur.tareapp.view.MainView;
+import com.chrisgalhur.tareapp.ui.activity.view.MainView;
 
 public class MainPresenterImpl implements MainPresenter {
 

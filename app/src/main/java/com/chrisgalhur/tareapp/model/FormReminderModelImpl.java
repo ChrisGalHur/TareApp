@@ -31,6 +31,7 @@ public class FormReminderModelImpl implements FormReminderModel {
     public Completable updateReminder(Reminder reminderToUpdate) {
         return Completable.fromAction(() -> databaseHelper.updateReminder(reminderToUpdate));
     }
+    //endregion UPDATE_REMINDER
 
     //region GET_REMINDER
     @Override

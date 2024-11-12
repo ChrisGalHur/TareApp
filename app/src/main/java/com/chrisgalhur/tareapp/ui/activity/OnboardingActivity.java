@@ -18,7 +18,7 @@ import com.chrisgalhur.tareapp.presenter.OnBoardingPresenterImpl;
 import com.chrisgalhur.tareapp.presenter.interf.OnboardingPresenter;
 import com.chrisgalhur.tareapp.util.BaseActivity;
 import com.chrisgalhur.tareapp.ui.adapter.MyViewPagerAdapter;
-import com.chrisgalhur.tareapp.view.OnboardingView;
+import com.chrisgalhur.tareapp.ui.activity.view.OnboardingView;
 
 import java.util.List;
 
