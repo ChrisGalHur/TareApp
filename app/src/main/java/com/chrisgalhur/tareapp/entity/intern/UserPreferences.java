@@ -1,10 +1,12 @@
-package com.chrisgalhur.tareapp.entity;
+package com.chrisgalhur.tareapp.entity.intern;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import java.util.Locale;
 
+// Manages user-specific settings. It is responsible for storing and retrieving preferences:
+// - Language
 public class UserPreferences {
 
     private static final String PREFS_NAME = "user_preferences";
@@ -31,6 +33,8 @@ public class UserPreferences {
         android.content.res.Resources resources = context.getResources();
         android.content.res.Configuration configuration = resources.getConfiguration();
         configuration.setLocale(locale);
+
+        context = context.createConfigurationContext(configuration);
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 }

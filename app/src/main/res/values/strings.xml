@@ -52,5 +52,11 @@
     <string name="channel_reminder_notifications">Channel for reminder notifications</string>
     <string name="general">General</string>
     <string name="schedule_alarm">Schedule Alarm</string>
+    <string name="language">Language</string>
+    <string name="hello_exclamation">HELLO!</string>
+    <string name="test" translatable="false">TEST</string>
+    <string name="time_zeros" translatable="false">00:00</string>
+    <string name="date_zeros" translatable="false">00/00/0000</string>
+    <string name="reminders_colon">Reminders:</string>
 
 </resources>

@@ -28,7 +28,7 @@ import androidx.room.Room;
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.database.AppDatabase;
 import com.chrisgalhur.tareapp.database.DatabaseConstants;
-import com.chrisgalhur.tareapp.dialog.NewTaskDialogFragment;
+import com.chrisgalhur.tareapp.ui.dialog.NewTaskDialogFragment;
 import com.chrisgalhur.tareapp.entity.Reminder;
 import com.chrisgalhur.tareapp.preference.MyPreferences;
 import com.chrisgalhur.tareapp.presenter.MainPresenterImpl;
@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity implements MainView {
         });
 
         //ACTIVITY WORKING
-        startActivity(new Intent(MainActivity.this, PreferenceActivity.class));
+        //startActivity(new Intent(MainActivity.this, PreferenceActivity.class));
 
         // PERMISSIONS
         requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {

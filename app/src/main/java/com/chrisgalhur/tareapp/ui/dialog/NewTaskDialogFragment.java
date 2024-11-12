@@ -1,4 +1,4 @@
-package com.chrisgalhur.tareapp.dialog;
+package com.chrisgalhur.tareapp.ui.dialog;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -40,7 +40,7 @@ public class NewTaskDialogFragment extends DialogFragment implements NewTaskView
         recyclerView = view.findViewById(R.id.recyclerViewNewTask);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        presenter = new NewTaskPresenterImpl(this);
+        presenter = new NewTaskPresenterImpl(this, getContext());
         presenter.loadTasks();
 
         return view;

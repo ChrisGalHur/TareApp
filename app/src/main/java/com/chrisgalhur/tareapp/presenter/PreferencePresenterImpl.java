@@ -3,7 +3,7 @@ package com.chrisgalhur.tareapp.presenter;
 import android.content.Context;
 
 import com.chrisgalhur.tareapp.R;
-import com.chrisgalhur.tareapp.entity.UserPreferences;
+import com.chrisgalhur.tareapp.entity.intern.UserPreferences;
 import com.chrisgalhur.tareapp.presenter.interf.PreferencePresenter;
 import com.chrisgalhur.tareapp.ui.activity.view.PreferenceView;
 
@@ -37,7 +37,6 @@ public class PreferencePresenterImpl implements PreferencePresenter {
             position = 0; // Si no se encuentra, posición predeterminada
         }
 
-
         view.updateLanguageSelection(position);
         view.setSpinnerPrompt(languageOptions[position]);
     }
@@ -50,6 +49,11 @@ public class PreferencePresenterImpl implements PreferencePresenter {
     @Override
     public void applyLanguage(String selectedLanguage) {
         userPreferences.applySavedLocale(context);
+    }
+
+    @Override
+    public String getLanguagePreference() {
+        return userPreferences.getLanguage();
     }
 
     @Override

@@ -7,4 +7,5 @@ public interface PreferencePresenter {
     void loadLanguagePreference();
     void saveLanguagePreference(String selectedLanguage);
     void applyLanguage(String selectedLanguage);
+    String getLanguagePreference();
 }

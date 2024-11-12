@@ -68,7 +68,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                android:text="Language"
+                android:text="@string/language"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvLanguagePreference"
@@ -84,14 +84,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/language_options"
-                app:layout_constraintTop_toBottomOf="@+id/tvLanguagePreference"
-                app:layout_constraintStart_toStartOf="@+id/tvLanguagePreference"
-                app:layout_constraintEnd_toEndOf="@+id/tvLanguagePreference"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="-80dp"
-                android:layout_marginTop="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="5dp" />
+                app:layout_constraintStart_toEndOf="@+id/tvLanguagePreference"
+                app:layout_constraintTop_toTopOf="@+id/tvLanguagePreference"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvLanguagePreference" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -117,7 +113,7 @@
                 app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
-                android:text="Permissions"
+                android:text="@string/permissions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvPermissionPreference"
@@ -143,8 +139,8 @@
             android:id="@+id/constLayAboutAppPreference">
 
         <ImageView
-                android:layout_width="60dp"
-                android:layout_height="50dp"
+                android:layout_width="55dp"
+                android:layout_height="45dp"
                 app:srcCompat="@drawable/info"
                 android:id="@+id/ivInfoPreference"
                 app:layout_constraintStart_toStartOf="parent"

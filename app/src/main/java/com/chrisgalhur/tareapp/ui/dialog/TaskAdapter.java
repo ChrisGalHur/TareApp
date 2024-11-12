@@ -1,4 +1,4 @@
-package com.chrisgalhur.tareapp.dialog;
+package com.chrisgalhur.tareapp.ui.dialog;
 
 import android.content.Intent;
 import android.util.Log;

@@ -51,9 +51,11 @@ public class PreferenceActivity extends BaseActivity implements PreferenceView {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String[] languageCodes = getResources().getStringArray(R.array.language_values);
                 String selectedLanguage = languageCodes[position];
-                presenter.saveLanguagePreference(selectedLanguage);
-                presenter.applyLanguage(selectedLanguage);
-                recreate(); // Recrea la actividad para aplicar el idioma seleccionado
+                if (!selectedLanguage.equals(presenter.getLanguagePreference())) {
+                    presenter.saveLanguagePreference(selectedLanguage);
+                    presenter.applyLanguage(selectedLanguage);
+                    recreate(); // Recrea la actividad para aplicar el idioma seleccionado
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {

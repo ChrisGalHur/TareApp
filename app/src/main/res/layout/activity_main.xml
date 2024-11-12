@@ -30,7 +30,7 @@
             android:layout_marginEnd="20dp" />
 
     <TextView
-            android:text="HOLA!"
+            android:text="@string/hello_exclamation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvTitleFormReminder"
@@ -54,7 +54,7 @@
             app:layout_constraintBottom_toTopOf="@+id/ivNewTaskMain" />
 
     <TextView
-            android:text="Reminders:"
+            android:text="@string/reminders_colon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
