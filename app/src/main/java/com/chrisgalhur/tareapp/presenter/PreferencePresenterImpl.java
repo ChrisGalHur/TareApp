@@ -1,68 +1,23 @@
 package com.chrisgalhur.tareapp.presenter;
 
-import android.content.Context;
+import com.chrisgalhur.tareapp.view.PreferenceView;
 
-import com.chrisgalhur.tareapp.R;
-import com.chrisgalhur.tareapp.entity.intern.UserPreferences;
-import com.chrisgalhur.tareapp.presenter.interf.PreferencePresenter;
-import com.chrisgalhur.tareapp.ui.activity.view.PreferenceView;
+public class PreferencePresenterImpl implements PreferencePresenter{
 
-import java.util.Arrays;
-
-public class PreferencePresenterImpl implements PreferencePresenter {
-
+    //region INJECTION
     private final PreferenceView view;
-    private final UserPreferences userPreferences;
-    private final Context context;
+    //endregion INJECTION
 
-    public PreferencePresenterImpl(PreferenceView view, Context context) {
+    //region CONSTRUCTOR
+    public PreferencePresenterImpl(PreferenceView view) {
         this.view = view;
-        this.context = context;
-        userPreferences = new UserPreferences(context);
     }
+    //endregion CONSTRUCTOR
 
-    @Override
-    public void onPermissionsClicked() {
-        view.navigateToPermissions();
-    }
-
-    @Override
-    public void loadLanguagePreference() {
-        String currentLanguage = userPreferences.getLanguage();
-        String[] languageCodes = context.getResources().getStringArray(R.array.language_values);
-        String[] languageOptions = context.getResources().getStringArray(R.array.language_options);
-        
-        int position = Arrays.asList(languageCodes).indexOf(currentLanguage);
-        if (position == -1) {
-            position = 0; // Si no se encuentra, posición predeterminada
-        }
-
-        view.updateLanguageSelection(position);
-        view.setSpinnerPrompt(languageOptions[position]);
-    }
-
-    @Override
-    public void saveLanguagePreference(String selectedLanguage) {
-        userPreferences.setLanguage(selectedLanguage);
-    }
-
-    @Override
-    public void applyLanguage(String selectedLanguage) {
-        userPreferences.applySavedLocale(context);
-    }
-
-    @Override
-    public String getLanguagePreference() {
-        return userPreferences.getLanguage();
-    }
-
+    //region ON_BACK_CLICKED
     @Override
     public void onBackClicked() {
-        view.navigateBack();
+        view.navigateToMain();
     }
-
-    @Override
-    public void onAboutClicked() {
-        view.navigateToAbout();
-    }
+    //endregion ON_BACK_CLICKED
 }

@@ -1,4 +1,4 @@
-package com.chrisgalhur.tareapp.model.interf;
+package com.chrisgalhur.tareapp.model;
 
 import com.chrisgalhur.tareapp.entity.Reminder;
 

@@ -1,4 +1,4 @@
-package com.chrisgalhur.tareapp.presenter.interf;
+package com.chrisgalhur.tareapp.presenter;
 
 public interface OnboardingPresenter {
     void onNextClicked(int position);
