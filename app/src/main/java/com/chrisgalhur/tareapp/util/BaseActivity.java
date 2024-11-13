@@ -9,11 +9,14 @@ import android.view.WindowInsetsController;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
 
+import com.chrisgalhur.tareapp.entity.intern.UserPreferences;
+
 public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applySavedLocale();
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
     }
 
@@ -38,5 +41,10 @@ public class BaseActivity extends AppCompatActivity {
                                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
             }
         }
+    }
+
+    private void applySavedLocale() {
+        UserPreferences userPreferences = new UserPreferences(this);
+        userPreferences.applySavedLocale(this);
     }
 }

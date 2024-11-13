@@ -86,6 +86,7 @@ public class PermissionAdapter extends RecyclerView.Adapter<PermissionAdapter.Pe
             holder.tvPermissionName.setTextColor(ContextCompat.getColor(context, R.color.green_ok));
             holder.tvPermissionAccepted.setVisibility(View.VISIBLE);
             holder.tvPermissionDescription.setVisibility(View.GONE);
+            holder.btnRequestPermission.setVisibility(View.GONE);
         } else {
             holder.tvPermissionName.setTextColor(ContextCompat.getColor(context, R.color.red_no_ok));
             holder.tvPermissionAccepted.setVisibility(View.GONE);
