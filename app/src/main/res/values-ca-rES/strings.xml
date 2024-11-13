@@ -50,7 +50,7 @@
     <string name="configuration_screen_not_open">No s\' ha pogut obrir la pantalla de configuració</string>
 
     <!-- Notifications -->
-    <string name="about_app">Sobre l\'aplicació</string>
+    <string name="developer_github">" GitHub del Desenvolupador"</string>
     <string name="channel_reminder">Canal de Recordatoris</string>
     <string name="channel_reminder_notifications">Canal per a notificacions de recordatoris</string>
     <string name="general">General</string>

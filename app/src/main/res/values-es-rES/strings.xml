@@ -50,7 +50,7 @@
     <string name="configuration_screen_not_open">No se pudo abrir la pantalla de configuración</string>
 
     <!-- Notifications -->
-    <string name="about_app">Sobre la aplicación</string>
+    <string name="developer_github">GitHub del Desarrollador</string>
     <string name="channel_reminder">Canal de Recordatorios</string>
     <string name="channel_reminder_notifications">Canal para notificaciones de recordatorios</string>
     <string name="general">General</string>
