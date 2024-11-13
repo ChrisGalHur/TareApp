@@ -27,7 +27,7 @@
     <string name="configuration_screen_not_open">Could not open the configuration screen.</string>
 
     <!-- Notifications -->
-    <string name="about_app">About app</string>
+    <string name="developer_github">Developer\'s GitHub</string>
     <string name="channel_reminder">Reminder Channel</string>
     <string name="channel_reminder_notifications">Channel for reminder notifications</string>
     <string name="general">General</string>
