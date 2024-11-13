@@ -11,7 +11,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -58,6 +60,7 @@ public class MainActivity extends BaseActivity implements MainView {
     private MainPresenter presenter;
     private ImageView ivPreference;
     private ImageView ivNewTask;
+    private TextView tvNoReminders;
 
     //region LIFECYCLE
     @Override
@@ -105,6 +108,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
         ivPreference = findViewById(R.id.ivPreferenceMain);
         ivNewTask = findViewById(R.id.ivNewTaskMain);
+        tvNoReminders = findViewById(R.id.tvNoRemindersMessageMain);
 
         ivPreference.setOnClickListener(v -> presenter.onBtnToPreferencesClicked());
 
@@ -203,13 +207,21 @@ public class MainActivity extends BaseActivity implements MainView {
         new Thread(() -> {
             try {
                 List<Reminder> reminders = db.reminderDao().getAll();
+                if (reminders.isEmpty()) {
+                    runOnUiThread(() -> {
+                        tvNoReminders.setVisibility(View.VISIBLE);
+                        recyclerViewReminders.setAdapter(null);
+                    });
+                } else {
+                    runOnUiThread(() -> {
+                        reminderAdapter = new ReminderAdapter(reminders, position -> presenter.onReminderClicked(reminders.get(position).getId()));
+                        recyclerViewReminders.setAdapter(reminderAdapter);
+                        tvNoReminders.setVisibility(View.GONE);
+                    });
+                }
                 Log.d(TAG, "Reminders loaded: " + reminders.size());
-                runOnUiThread(() -> {
-                    reminderAdapter = new ReminderAdapter(reminders, position -> presenter.onReminderClicked(reminders.get(position).getId()));
-                    recyclerViewReminders.setAdapter(reminderAdapter);
-                });
             } catch (Exception e) {
-                Log.e(TAG, "Error loading reminders", e);
+                tvNoReminders.setText("Error loading reminders");
             }
         }).start();
     }

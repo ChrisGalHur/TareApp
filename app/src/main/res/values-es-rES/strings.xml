@@ -58,5 +58,6 @@
     <string name="language">Idioma</string>
     <string name="hello_exclamation">HOLA!</string>
     <string name="reminders_colon">Recordatorios:</string>
+    <string name="no_reminders_message">No tienes recordatorios,\n clica en el simbolo \'+\' para añadir un recordatorio</string>
 
 </resources>
