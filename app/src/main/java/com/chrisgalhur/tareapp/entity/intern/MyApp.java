@@ -18,7 +18,7 @@ public class MyApp extends Application {
         updateBaseContextLocale(this);
     }
 
-    private Context updateBaseContextLocale(Context context) {
+    private void updateBaseContextLocale(Context context) {
         UserPreferences userPreferences = new UserPreferences(context);
         String language = userPreferences.getLanguage();
         Locale locale = new Locale(language);
@@ -28,6 +28,6 @@ public class MyApp extends Application {
         android.content.res.Configuration configuration = resources.getConfiguration();
         configuration.setLocale(locale);
 
-        return context.createConfigurationContext(configuration);
+        context.createConfigurationContext(configuration);
     }
 }

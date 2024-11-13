@@ -2,26 +2,6 @@
 
     <string name="app_name">Tareapp</string>
 
-    <!-- UI -->
-    <string name="accept">Accept</string>
-    <string name="accepted">Accepted</string>
-    <string name="cancel">Cancel</string>
-    <string name="date">Date</string>
-    <string name="description">Description</string>
-    <string name="example">Example</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="lets_start">Let\'s Start!</string>
-    <string name="name">Name</string>
-    <string name="new_reminder">New Reminder</string>
-    <string name="next">Next</string>
-    <string name="permissions">Permissions</string>
-    <string name="preferences">Preferences</string>
-    <string name="reminder">Reminder</string>
-    <string name="select">Select</string>
-    <string name="skip">Skip</string>
-    <string name="time">Time</string>
-    <string name="today">Today</string>
-
     <!-- UI Errors -->
     <string name="error_reminder_not_found">Reminder not found</string>
     <string name="error_time">Time is required</string>
@@ -52,11 +32,31 @@
     <string name="channel_reminder_notifications">Channel for reminder notifications</string>
     <string name="general">General</string>
     <string name="schedule_alarm">Schedule Alarm</string>
-    <string name="language">Language</string>
-    <string name="hello_exclamation">HELLO!</string>
-    <string name="test" translatable="false">TEST</string>
-    <string name="time_zeros" translatable="false">00:00</string>
+
+    <!-- UI -->
+    <string name="accept">Accept</string>
+    <string name="accepted">Accepted</string>
+    <string name="cancel">Cancel</string>
+    <string name="date">Date</string>
     <string name="date_zeros" translatable="false">00/00/0000</string>
+    <string name="description">Description</string>
+    <string name="example">Example</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_exclamation">HELLO!</string>
+    <string name="language">Language</string>
+    <string name="lets_start">Let\'s Start!</string>
+    <string name="name">Name</string>
+    <string name="new_reminder">New Reminder</string>
+    <string name="next">Next</string>
+    <string name="permissions">Permissions</string>
+    <string name="preferences">Preferences</string>
+    <string name="reminder">Reminder</string>
     <string name="reminders_colon">Reminders:</string>
+    <string name="select">Select</string>
+    <string name="skip">Skip</string>
+    <string name="test" translatable="false">TEST</string>
+    <string name="time">Time</string>
+    <string name="time_zeros" translatable="false">00:00</string>
+    <string name="today">Today</string>
 
 </resources>

@@ -57,6 +57,11 @@ public class PreferencePresenterImpl implements PreferencePresenter {
     }
 
     @Override
+    public void onBackClicked() {
+        view.navigateBack();
+    }
+
+    @Override
     public void onAboutClicked() {
         //todo
     }

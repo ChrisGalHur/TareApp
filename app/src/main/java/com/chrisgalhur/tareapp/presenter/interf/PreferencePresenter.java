@@ -8,4 +8,5 @@ public interface PreferencePresenter {
     void saveLanguagePreference(String selectedLanguage);
     void applyLanguage(String selectedLanguage);
     String getLanguagePreference();
+    void onBackClicked();
 }

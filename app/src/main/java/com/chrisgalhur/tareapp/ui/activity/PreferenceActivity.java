@@ -62,7 +62,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceView {
             }
         });
 
-        ivBack.setOnClickListener(v -> finish());
+        ivBack.setOnClickListener(v -> presenter.onBackClicked());
         permissionsLayout.setOnClickListener(v -> presenter.onPermissionsClicked());
         aboutLayout.setOnClickListener(v -> presenter.onAboutClicked());
         presenter.loadLanguagePreference();
@@ -84,6 +84,12 @@ public class PreferenceActivity extends BaseActivity implements PreferenceView {
     @Override
     public void setSpinnerPrompt(String prompt) {
         spinnerLanguage.setPrompt(prompt);
+    }
+
+    @Override
+    public void navigateBack() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
     //endregion UI METHODS
 }

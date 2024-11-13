@@ -28,15 +28,17 @@ import androidx.room.Room;
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.database.AppDatabase;
 import com.chrisgalhur.tareapp.database.DatabaseConstants;
-import com.chrisgalhur.tareapp.ui.dialog.NewTaskDialogFragment;
 import com.chrisgalhur.tareapp.entity.Reminder;
+import com.chrisgalhur.tareapp.entity.intern.UserPreferences;
 import com.chrisgalhur.tareapp.preference.MyPreferences;
 import com.chrisgalhur.tareapp.presenter.MainPresenterImpl;
 import com.chrisgalhur.tareapp.presenter.interf.MainPresenter;
+import com.chrisgalhur.tareapp.ui.activity.view.MainView;
 import com.chrisgalhur.tareapp.ui.adapter.ReminderAdapter;
+import com.chrisgalhur.tareapp.ui.dialog.NewTaskDialogFragment;
 import com.chrisgalhur.tareapp.util.BaseActivity;
 import com.chrisgalhur.tareapp.util.NotificationUtil;
-import com.chrisgalhur.tareapp.ui.activity.view.MainView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -62,6 +64,7 @@ public class MainActivity extends BaseActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        applySavedLocale();
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -113,6 +116,11 @@ public class MainActivity extends BaseActivity implements MainView {
         super.onResume();
         loadReminders();
     }
+
+    private void applySavedLocale() {
+        UserPreferences userPreferences = new UserPreferences(this);
+        userPreferences.applySavedLocale(this);
+    }
     //endregion LIFECYCLE
 
     //region UI METHODS
@@ -161,7 +169,7 @@ public class MainActivity extends BaseActivity implements MainView {
                         startActivity(intent);
                     })
                     .setNegativeButton("Cancel", (dialog, which) -> {
-                        Snackbar.make(findViewById(android.R.id.content), "Without the permission, we don't schedule alarms and reminders", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(android.R.id.content), "Without the permission, we don't schedule alarms and reminders", BaseTransientBottomBar.LENGTH_LONG).show();
                         dialog.dismiss();
                     })
                     .show();
