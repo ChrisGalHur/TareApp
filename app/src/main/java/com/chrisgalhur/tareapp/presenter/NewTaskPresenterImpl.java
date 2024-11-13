@@ -28,5 +28,10 @@ public class NewTaskPresenterImpl implements NewTaskPresenter {
         List<String> tasks = Arrays.asList(context.getString(R.string.reminder));
         view.updateTasks(tasks);
     }
+
+    @Override
+    public void dismissDialog() {
+        view.dismissDialog();
+    }
     //endregion LOAD_TASKS
 }

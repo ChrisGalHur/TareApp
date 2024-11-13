@@ -1,4 +1,4 @@
-package com.chrisgalhur.tareapp.ui.dialog;
+package com.chrisgalhur.tareapp.ui.adapter;
 
 import android.content.Intent;
 import android.util.Log;
@@ -56,6 +56,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                         return;
                 }
                 v.getContext().startActivity(intent);
+                // quitar el dialogo despues de seleccionar una tarea e iniciar la actividad
+                presenter.dismissDialog();
             }
         });
     }

@@ -165,7 +165,8 @@ public class MainActivity extends BaseActivity implements MainView {
             new AlertDialog.Builder(this)
                     .setTitle("Permission required")
                     .setMessage("To schedule alarms and reminders, we need your permission. " +
-                            "Follow this steps:\n\n1. Roll window, click on Alarms & Reminders. \n2. Click on Enable permission. \n3. Go back to the app.")
+                            "Follow this steps:\n\n1. Roll window, click on Alarms & Reminders. \n" +
+                            "2. Click on Enable permission. \n3. Go back to the app.")
                     .setPositiveButton("OK", (dialog, which) -> {
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         Uri uri = Uri.fromParts("package", getPackageName(), null);
@@ -173,7 +174,8 @@ public class MainActivity extends BaseActivity implements MainView {
                         startActivity(intent);
                     })
                     .setNegativeButton("Cancel", (dialog, which) -> {
-                        Snackbar.make(findViewById(android.R.id.content), "Without the permission, we don't schedule alarms and reminders", BaseTransientBottomBar.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(android.R.id.content), "Without the permission, we don't schedule alarms and reminders",
+                                BaseTransientBottomBar.LENGTH_LONG).show();
                         dialog.dismiss();
                     })
                     .show();

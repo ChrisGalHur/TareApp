@@ -18,6 +18,7 @@ import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.presenter.interf.NewTaskPresenter;
 import com.chrisgalhur.tareapp.presenter.NewTaskPresenterImpl;
 import com.chrisgalhur.tareapp.ui.activity.view.NewTaskView;
+import com.chrisgalhur.tareapp.ui.adapter.TaskAdapter;
 
 import java.util.List;
 
@@ -57,6 +58,11 @@ public class NewTaskDialogFragment extends DialogFragment implements NewTaskView
         }
         adapter = new TaskAdapter(tasks, presenter);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void dismissDialog() {
+        dismiss();
     }
     //endregion UPDATE_TASKS
 

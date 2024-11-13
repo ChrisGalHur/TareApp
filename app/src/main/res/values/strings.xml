@@ -23,6 +23,7 @@
     <string name="permission_schedule_exact_alarm">Schedule Exact Alarm</string>
     <string name="permission_schedule_exact_alarm_description">Allows the app to schedule exact alarms</string>
         <!-- Errors -->
+    <string name="error_name_required">Name is required</string>
     <string name="address_accept_notifications">Go to app settings and accept notifications</string>
     <string name="configuration_screen_not_open">Could not open the configuration screen.</string>
 

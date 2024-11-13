@@ -90,6 +90,7 @@ public class FormReminderPresenterImpl implements FormReminderPresenter {
     //region SET_REMINDER_ALARM
     @Override
     public void setReminderAlarm(Reminder reminder) {
+        // todo: refactor this method
         Context context = view.getContext();
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, ReminderReceiver.class);

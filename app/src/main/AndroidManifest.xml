@@ -23,9 +23,6 @@
                 android:name=".ui.activity.PermissionActivity"
                 android:exported="false" />
         <activity
-                android:name=".ui.activity.StopAlarmActivity"
-                android:exported="true" />
-        <activity
                 android:name=".ui.activity.FormReminderActivity"
                 android:exported="false" />
         <activity
