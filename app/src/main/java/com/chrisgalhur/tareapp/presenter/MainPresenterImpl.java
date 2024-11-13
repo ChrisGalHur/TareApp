@@ -3,11 +3,10 @@ package com.chrisgalhur.tareapp.presenter;
 import android.content.Intent;
 
 import com.chrisgalhur.tareapp.R;
-import com.chrisgalhur.tareapp.presenter.interf.MainPresenter;
 import com.chrisgalhur.tareapp.ui.activity.FormReminderActivity;
-import com.chrisgalhur.tareapp.ui.activity.view.MainView;
+import com.chrisgalhur.tareapp.view.MainView;
 
-public class MainPresenterImpl implements MainPresenter {
+public class MainPresenterImpl implements MainPresenter{
 
     //region INJECTION
     private final MainView view;
@@ -18,6 +17,13 @@ public class MainPresenterImpl implements MainPresenter {
         this.view = view;
     }
     //endregion CONSTRUCTOR
+
+    //region ON_BTN_TO_CALENDAR_CLICKED
+    @Override
+    public void onBtnToCalendarClicked() {
+        view.navigateToCalendar();
+    }
+    //endregion ON_BTN_TO_CALENDAR_CLICKED
 
     //region ON_BTN_TO_PREFERENCES_CLICKED
     @Override

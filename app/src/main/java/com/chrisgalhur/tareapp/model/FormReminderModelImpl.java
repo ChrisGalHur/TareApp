@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.chrisgalhur.tareapp.database.DatabaseHelper;
 import com.chrisgalhur.tareapp.entity.Reminder;
-import com.chrisgalhur.tareapp.model.interf.FormReminderModel;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
@@ -31,7 +30,6 @@ public class FormReminderModelImpl implements FormReminderModel {
     public Completable updateReminder(Reminder reminderToUpdate) {
         return Completable.fromAction(() -> databaseHelper.updateReminder(reminderToUpdate));
     }
-    //endregion UPDATE_REMINDER
 
     //region GET_REMINDER
     @Override

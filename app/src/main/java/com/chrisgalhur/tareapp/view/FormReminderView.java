@@ -1,4 +1,4 @@
-package com.chrisgalhur.tareapp.ui.activity.view;
+package com.chrisgalhur.tareapp.view;
 
 import android.content.Context;
 

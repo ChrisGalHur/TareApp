@@ -2,61 +2,37 @@
 
     <string name="app_name">Tareapp</string>
 
-    <!-- UI Errors -->
-    <string name="error_reminder_not_found">Reminder not found</string>
-    <string name="error_time">Time is required</string>
-
-    <!-- Java -->
-    <string name="delete">Delete</string>
-    <string name="delete_reminder">Delete Reminder</string>
-    <string name="extra_reminder_id">reminderId</string>
-    <string name="success_reminder_deleted">Reminder Deleted</string>
-    <string name="success_reminder_saved">Reminder Saved</string>
-    <string name="success_reminder_updated">Reminder updated</string>
-    <string name="title_edit_reminder">Edit Reminder</string>
-    <string name="title_new_reminder">New Reminder</string>
-        <!-- Permissions -->
-    <string name="permission_ignore_battery_optimizations">Ignore Battery Optimizations</string>
-    <string name="permission_ignore_battery_optimizations_description">Allows the app to request to ignore battery optimizations</string>
-    <string name="permission_post_notifications">Post Notifications</string>
-    <string name="permission_post_notifications_description">Allows the app to post notifications</string>
-    <string name="permission_schedule_exact_alarm">Schedule Exact Alarm</string>
-    <string name="permission_schedule_exact_alarm_description">Allows the app to schedule exact alarms</string>
-        <!-- Errors -->
-    <string name="address_accept_notifications">Go to app settings and accept notifications</string>
-    <string name="configuration_screen_not_open">Could not open the configuration screen.</string>
-
-    <!-- Notifications -->
-    <string name="about_app">About app</string>
-    <string name="channel_reminder">Reminder Channel</string>
-    <string name="channel_reminder_notifications">Channel for reminder notifications</string>
-    <string name="general">General</string>
-    <string name="schedule_alarm">Schedule Alarm</string>
-
     <!-- UI -->
-    <string name="accept">Accept</string>
-    <string name="accepted">Accepted</string>
-    <string name="cancel">Cancel</string>
-    <string name="date">Date</string>
-    <string name="date_zeros" translatable="false">00/00/0000</string>
-    <string name="description">Description</string>
-    <string name="example">Example</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hello_exclamation">HELLO!</string>
-    <string name="language">Language</string>
+    <string name="textview">TextView</string>
+    <string name="skip">Skip</string>
     <string name="lets_start">Let\'s Start!</string>
-    <string name="name">Name</string>
-    <string name="new_reminder">New Reminder</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="omitir">Omitir</string>
+    <string name="siguiente">Siguiente</string>
     <string name="next">Next</string>
-    <string name="permissions">Permissions</string>
     <string name="preferences">Preferences</string>
     <string name="reminder">Reminder</string>
-    <string name="reminders_colon">Reminders:</string>
-    <string name="select">Select</string>
-    <string name="skip">Skip</string>
-    <string name="test" translatable="false">TEST</string>
+    <string name="new_reminder">New Reminder</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="date">Date</string>
     <string name="time">Time</string>
-    <string name="time_zeros" translatable="false">00:00</string>
     <string name="today">Today</string>
+    <string name="select">Select</string>
+    <string name="description">Description</string>
+    <string name="name">Name</string>
 
+    <!-- UI Errors -->
+    <string name="error_time">Time is required</string>
+    <string name="error_reminder_not_found">Reminder not found</string>
+
+    <!-- Java -->
+    <string name="extra_reminder_id">reminderId</string>
+    <string name="delete">Delete</string>
+    <string name="delete_reminder">Delete Reminder</string>
+    <string name="title_new_reminder">New Reminder</string>
+    <string name="title_edit_reminder">Edit Reminder</string>
+    <string name="success_reminder_saved">Reminder Saved</string>
+    <string name="success_reminder_deleted">Reminder Deleted</string>
+    <string name="success_reminder_updated">Reminder updated</string>
 </resources>
