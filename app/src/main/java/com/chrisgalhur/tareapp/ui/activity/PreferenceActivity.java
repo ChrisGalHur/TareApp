@@ -1,6 +1,7 @@
 package com.chrisgalhur.tareapp.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,8 +17,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.presenter.PreferencePresenterImpl;
 import com.chrisgalhur.tareapp.presenter.interf.PreferencePresenter;
-import com.chrisgalhur.tareapp.util.BaseActivity;
 import com.chrisgalhur.tareapp.ui.activity.view.PreferenceView;
+import com.chrisgalhur.tareapp.util.BaseActivity;
 
 public class PreferenceActivity extends BaseActivity implements PreferenceView {
 
@@ -89,6 +90,12 @@ public class PreferenceActivity extends BaseActivity implements PreferenceView {
     @Override
     public void navigateBack() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void navigateToAbout() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ChrisGalHur"));
         startActivity(intent);
     }
     //endregion UI METHODS

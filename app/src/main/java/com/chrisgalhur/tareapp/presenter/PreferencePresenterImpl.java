@@ -63,6 +63,6 @@ public class PreferencePresenterImpl implements PreferencePresenter {
 
     @Override
     public void onAboutClicked() {
-        //todo
+        view.navigateToAbout();
     }
 }

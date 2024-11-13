@@ -6,4 +6,5 @@ public interface PreferenceView {
     void updateLanguageSelection(int position);
     void setSpinnerPrompt(String prompt);
     void navigateBack();
+    void navigateToAbout();
 }
