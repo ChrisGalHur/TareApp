@@ -1,11 +1,20 @@
 package com.chrisgalhur.tareapp.presenter;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.entity.Reminder;
-import com.chrisgalhur.tareapp.model.FormReminderModel;
-import com.chrisgalhur.tareapp.view.FormReminderView;
+import com.chrisgalhur.tareapp.model.interf.FormReminderModel;
+import com.chrisgalhur.tareapp.presenter.interf.FormReminderPresenter;
+import com.chrisgalhur.tareapp.receiver.ReminderReceiver;
+import com.chrisgalhur.tareapp.ui.activity.view.FormReminderView;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -57,6 +66,7 @@ public class FormReminderPresenterImpl implements FormReminderPresenter {
                         throwable -> view.showError(throwable.getMessage())
                 );
         disposables.add(disposable);
+        setReminderAlarm(reminder);
     }
     //endregion SAVE_REMINDER
 
@@ -73,7 +83,35 @@ public class FormReminderPresenterImpl implements FormReminderPresenter {
                         throwable -> view.showError(throwable.getMessage())
                 );
         disposables.add(disposable);
+        setReminderAlarm(reminder);
     }
+    //endregion UPDATE_REMINDER
+
+    //region SET_REMINDER_ALARM
+    @Override
+    public void setReminderAlarm(Reminder reminder) {
+        Context context = view.getContext();
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, ReminderReceiver.class);
+        intent.putExtra("title", reminder.getName());
+        intent.putExtra("description", reminder.getDescription());
+
+        PendingIntent pendingIntent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            pendingIntent = PendingIntent.getBroadcast(context, reminder.getId(), intent, PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            pendingIntent = PendingIntent.getBroadcast(context, reminder.getId(), intent, 0);
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(reminder.getReminderDate().getYear(), reminder.getReminderDate().getMonthValue() - 1, reminder.getReminderDate().getDayOfMonth(),
+                reminder.getReminderDate().getHour(), reminder.getReminderDate().getMinute(), 0);
+
+        if (alarmManager != null) {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        }
+    }
+    //endregion SET_REMINDER_ALARM
 
     //region LOAD_REMINDER
     @Override

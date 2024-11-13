@@ -1,10 +1,9 @@
-package com.chrisgalhur.tareapp.view;
+package com.chrisgalhur.tareapp.ui.activity.view;
 
 import android.content.Context;
 
 public interface MainView {
     Context getContext();
-    void navigateToCalendar();
     void navigateToPreferences();
     void openNewTaskDialog();
 }

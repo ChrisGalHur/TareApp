@@ -2,7 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
     <application
+            android:name=".entity.intern.MyApp"
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
             android:fullBackupContent="@xml/backup_rules"
@@ -13,16 +20,16 @@
             android:theme="@style/Theme.Tareapp"
             tools:targetApi="31">
         <activity
-                android:name=".activity.FormReminderActivityNew"
+                android:name=".ui.activity.PermissionActivity"
                 android:exported="false" />
+        <activity
+                android:name=".ui.activity.StopAlarmActivity"
+                android:exported="true" />
         <activity
                 android:name=".ui.activity.FormReminderActivity"
                 android:exported="false" />
         <activity
                 android:name=".ui.activity.PreferenceActivity"
-                android:exported="false" />
-        <activity
-                android:name=".ui.activity.CalendarActivity"
                 android:exported="false" />
         <activity
                 android:name=".ui.activity.MainActivity"
@@ -35,6 +42,11 @@
         </activity>
         <activity
                 android:name=".ui.activity.OnboardingActivity"
+                android:exported="true" />
+
+        <receiver android:name=".receiver.ReminderReceiver" />
+        <receiver
+                android:name=".receiver.SilentAlarmReceiver"
                 android:exported="true" />
     </application>
 

@@ -1,34 +1,32 @@
 package com.chrisgalhur.tareapp.presenter;
 
-import com.chrisgalhur.tareapp.view.NewTaskView;
+import android.content.Context;
+
+import com.chrisgalhur.tareapp.R;
+import com.chrisgalhur.tareapp.presenter.interf.NewTaskPresenter;
+import com.chrisgalhur.tareapp.ui.activity.view.NewTaskView;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class NewTaskPresenterImpl implements NewTaskPresenter{
+public class NewTaskPresenterImpl implements NewTaskPresenter {
 
-    //region INJECTION
     private final NewTaskView view;
-    //endregion INJECTION
+    private final Context context;
 
     //region CONSTRUCTOR
-    public NewTaskPresenterImpl(NewTaskView view){
+    public NewTaskPresenterImpl(NewTaskView view, Context context){
         this.view = view;
+        this.context = context;
     }
     //endregion CONSTRUCTOR
 
     //region LOAD_TASKS
     @Override
     public void loadTasks() {
-        List<String> tasks = Arrays.asList("Recordatorio");
+        // Recoger recordatorio de string.xml
+        List<String> tasks = Arrays.asList(context.getString(R.string.reminder));
         view.updateTasks(tasks);
     }
     //endregion LOAD_TASKS
-
-    //region ADD_TASK
-    @Override
-    public void addTask(String taskName) {
-
-    }
-    //endregion ADD_TASK
 }
