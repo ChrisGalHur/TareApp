@@ -46,6 +46,7 @@
     <string name="permission_schedule_exact_alarm_description">Permet a l\' aplicació programar alarmes exactes</string>
 
     <!-- Errors -->
+    <string name="error_name_required">Nom obligatori</string>
     <string name="address_accept_notifications">Vés a la configuració de l\' aplicació i accepta les notificacions</string>
     <string name="configuration_screen_not_open">No s\' ha pogut obrir la pantalla de configuració</string>
 
@@ -59,5 +60,6 @@
     <string name="hello_exclamation">HOLA!</string>
     <string name="reminders_colon">Recordatoris:</string>
     <string name="no_reminders_message">No tens recordatoris,\n clica en el símbol \'+\' per afegir un recordatori.</string>
+    <string name="mute">Silenciar</string>
 
 </resources>

@@ -34,8 +34,6 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
     //endregion INJECTION
 
     //region VARIABLES
-    private String reminderName;
-    private String reminderDescription;
     private int formYear;
     private int formMonth;
     private int formDay;
@@ -61,7 +59,7 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
     }
     //endregion GET_CONTEXT
 
-    //region ON_CREATE
+    //region LIFE_CYCLE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +83,6 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
         btnCancel = findViewById(R.id.btnCancelFormReminder);
         btnAccept = findViewById(R.id.btnAcceptFormReminder);
 
-
         int reminderId = getIntent().getIntExtra(getString(R.string.extra_reminder_id), -1);
 
         if(reminderId != -1) { // Adecuamos la vista para editar un recordatorio
@@ -98,7 +95,6 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
             btDeleteReminder.setVisibility(android.view.View.GONE);
         }
 
-
         btSelectDate.setOnClickListener(v -> presenter.onBtSelectDateClicked());
 
         btSelectTime.setOnClickListener(v -> presenter.onBtSelectTimeClicked());
@@ -107,15 +103,13 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
 
         btnAccept.setOnClickListener(v -> presenter.onBtnAcceptClicked());
     }
-    //endregion ON_CREATE
 
-    //region ON_DESTROY
     @Override
     protected void onDestroy() {
         super.onDestroy();
         presenter.clearDisposables();
     }
-    //endregion ON_DESTROY
+    //endregion LIFE_CYCLE
 
     //region OPEN_DATE_PICKER
     @Override
@@ -154,7 +148,7 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
         String description = etReminderDescription.getText().toString().trim();
 
         if(name.isEmpty()) {
-            etReminderName.setError("Name is required");
+            etReminderName.setError(getContext().getString(R.string.error_name_required));
             etReminderName.setHintTextColor(getResources().getColor(R.color.red));
             return;
         }

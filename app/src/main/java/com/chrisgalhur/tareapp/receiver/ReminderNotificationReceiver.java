@@ -8,7 +8,8 @@ import android.os.Build;
 
 import com.chrisgalhur.tareapp.util.NotificationUtil;
 
-public class ReminderReceiver extends BroadcastReceiver {
+public class ReminderNotificationReceiver extends BroadcastReceiver {
+
     @Override
     public void onReceive(Context context, Intent intent) {
         // Obtain the task data from the intent
@@ -16,7 +17,7 @@ public class ReminderReceiver extends BroadcastReceiver {
         String description = intent.getStringExtra("description");
 
         // Create intent to silence the alarm
-        Intent silentIntent = new Intent(context, SilentAlarmReceiver.class);
+        Intent silentIntent = new Intent(context, ReminderNotificationClickReceiver.class);
         PendingIntent silentPendingIntent;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             silentPendingIntent = PendingIntent.getBroadcast(context, 0, silentIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);

@@ -46,6 +46,7 @@
     <string name="permission_schedule_exact_alarm_description">Permite a la aplicación programar alarmas exactas</string>
 
     <!-- Errors -->
+    <string name="error_name_required">Nombre obligatorio</string>
     <string name="address_accept_notifications">Ve a la configuración de la aplicación y acepta las notificaciones</string>
     <string name="configuration_screen_not_open">No se pudo abrir la pantalla de configuración</string>
 
@@ -59,5 +60,6 @@
     <string name="hello_exclamation">HOLA!</string>
     <string name="reminders_colon">Recordatorios:</string>
     <string name="no_reminders_message">No tienes recordatorios,\n clica en el simbolo \'+\' para añadir un recordatorio</string>
+    <string name="mute">Silenciar</string>
 
 </resources>
