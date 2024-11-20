@@ -10,6 +10,13 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <!-- Splash screen theme -->
+    <style name="Theme.Tareapp.Splash" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:windowBackground">@color/medium_blue</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <!-- Tema personalizado para el TimePicker -->
     <style name="CustomTimePicker" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/dark_blue</item>
