@@ -10,7 +10,7 @@ import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.entity.Reminder;
 import com.chrisgalhur.tareapp.model.interf.FormReminderModel;
 import com.chrisgalhur.tareapp.presenter.interf.FormReminderPresenter;
-import com.chrisgalhur.tareapp.receiver.ReminderReceiver;
+import com.chrisgalhur.tareapp.receiver.ReminderNotificationReceiver;
 import com.chrisgalhur.tareapp.ui.activity.view.FormReminderView;
 
 import java.time.LocalDateTime;
@@ -93,7 +93,7 @@ public class FormReminderPresenterImpl implements FormReminderPresenter {
         // todo: refactor this method
         Context context = view.getContext();
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, ReminderReceiver.class);
+        Intent intent = new Intent(context, ReminderNotificationReceiver.class);
         intent.putExtra("title", reminder.getName());
         intent.putExtra("description", reminder.getDescription());
 

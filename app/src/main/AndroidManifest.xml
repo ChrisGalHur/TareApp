@@ -13,9 +13,9 @@
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
             android:fullBackupContent="@xml/backup_rules"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/logo_pers"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@drawable/logo_pers"
             android:supportsRtl="true"
             android:theme="@style/Theme.Tareapp"
             tools:targetApi="31">
@@ -37,13 +37,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-                android:name=".ui.activity.OnboardingActivity"
-                android:exported="true" />
 
-        <receiver android:name=".receiver.ReminderReceiver" />
         <receiver
-                android:name=".receiver.SilentAlarmReceiver"
+                android:name=".receiver.ReminderNotificationReceiver" />
+        <receiver
+                android:name=".receiver.ReminderNotificationClickReceiver"
+                android:exported="true" />
+        <receiver
+                android:name=".receiver.ReminderMuteReceiver"
                 android:exported="true" />
     </application>
 

@@ -15,12 +15,13 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import com.chrisgalhur.tareapp.R;
-import com.chrisgalhur.tareapp.ui.activity.MainActivity;
+import com.chrisgalhur.tareapp.receiver.ReminderMuteReceiver;
+import com.chrisgalhur.tareapp.receiver.ReminderNotificationClickReceiver;
 
 public class NotificationUtil {
 
+    public static final int ALARM_NOTIFICATION_ID = 1;
     private static final String TAG = "'/'/ NotificationUtil";
-    private static final int ALARM_NOTIFICATION_ID = 1;
     private static final String CHANNEL_ID = "alarm_channel";
     private static MediaPlayer mediaPlayer;
 
@@ -37,26 +38,33 @@ public class NotificationUtil {
         channel.setDescription("Reminder notification channel");
         channel.enableVibration(true);
         channel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+        channel.setSound(null, null);
 
         notificationManager.createNotificationChannel(channel);
     }
 
     public static void showNotification(Context context, String title, String description, PendingIntent dismissPendingIntent) {
-        Intent intentReturnMain = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, ALARM_NOTIFICATION_ID, intentReturnMain,
+        // Intent para abrir la app al hacer click en la notificación
+        Intent clickIntent = new Intent(context, ReminderNotificationClickReceiver.class);
+        PendingIntent clickPendingIntent = PendingIntent.getActivity(context, ALARM_NOTIFICATION_ID, clickIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        //Intent para silenciar la alarma al hacer click en el botón de la notificación
+        Intent muteIntent = new Intent(context, ReminderMuteReceiver.class);
+        PendingIntent mutePendingIntent = PendingIntent.getBroadcast(context, 0, muteIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notification)
+                .setSmallIcon(R.drawable.logo_pers_no_background)
+                //.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.logo_pers_no_background)) // Ícono grande para la notificación
                 .setContentTitle(title)
                 .setContentText(description)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)
-                .setContentIntent(pendingIntent);
-
-        if (dismissPendingIntent != null) {
-            builder.addAction(0, "Dismiss", dismissPendingIntent);
-        }
+                .setContentIntent(clickPendingIntent)
+                .addAction(0, context.getString(R.string.mute), mutePendingIntent)
+                .setSound(null)
+                .setColor(context.getResources().getColor(R.color.light_blue, null));
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(ALARM_NOTIFICATION_ID, builder.build());
