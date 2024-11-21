@@ -61,5 +61,7 @@
     <string name="reminders_colon">Recordatorios:</string>
     <string name="no_reminders_message">No tienes recordatorios,\n clica en el simbolo \'+\' para añadir un recordatorio</string>
     <string name="mute">Silenciar</string>
+    <string name="error_loading_reminders">Error cargando recordatorios</string>
+    <string name="delete_past_reminder">Eliminar Recordatorio Pasado</string>
 
 </resources>

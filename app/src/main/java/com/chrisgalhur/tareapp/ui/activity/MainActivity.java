@@ -43,6 +43,7 @@ import com.chrisgalhur.tareapp.util.NotificationUtil;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements MainView {
@@ -209,6 +210,8 @@ public class MainActivity extends BaseActivity implements MainView {
         new Thread(() -> {
             try {
                 List<Reminder> reminders = db.reminderDao().getAll();
+                // Damos la vuelta para que los más recientes aparezcan arriba pero los que ya han pasado se muestren después
+                sortReminders(reminders);
                 if (reminders.isEmpty()) {
                     runOnUiThread(() -> {
                         tvNoReminders.setVisibility(View.VISIBLE);
@@ -223,9 +226,25 @@ public class MainActivity extends BaseActivity implements MainView {
                 }
                 Log.d(TAG, "Reminders loaded: " + reminders.size());
             } catch (Exception e) {
-                tvNoReminders.setText("Error loading reminders");
+                tvNoReminders.setText(R.string.error_loading_reminders);
             }
         }).start();
+    }
+
+    private void sortReminders(List<Reminder> reminders) {
+        LocalDateTime now = LocalDateTime.now();
+
+        reminders.sort((r1, r2) -> {
+            if (r1.getReminderDate().isAfter(now) && r2.getReminderDate().isAfter(now)) {
+                return r1.getReminderDate().compareTo(r2.getReminderDate());
+            } else if (r1.getReminderDate().isBefore(now) && r2.getReminderDate().isBefore(now)) {
+                return r2.getReminderDate().compareTo(r1.getReminderDate());
+            } else if (r1.getReminderDate().isAfter(now) && r2.getReminderDate().isBefore(now)) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
     }
     //endregion AUXILIARY PRIVATE METHODS
 }

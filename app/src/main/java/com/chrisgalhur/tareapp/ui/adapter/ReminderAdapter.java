@@ -6,11 +6,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chrisgalhur.tareapp.R;
 import com.chrisgalhur.tareapp.entity.Reminder;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
@@ -44,42 +46,62 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
     @Override
     public void onBindViewHolder(@NonNull ReminderAdapter.ReminderViewHolder holder, int position) {
         Reminder reminder = reminders.get(position);
+
+        LocalDateTime date = reminder.getReminderDate();
+        String formattedDate = date.format(dateFormat);
         holder.tvReminderName.setText(reminder.getName());
-        String formattedDate = reminder.getReminderDate().format(dateFormat);
         holder.tvReminderDate.setText(formattedDate.split(" ")[0]);
         holder.tvReminderTime.setText(formattedDate.split(" ")[1]);
         holder.tvReminderDescription.setText(reminder.getDescription());
         holder.itemView.setOnClickListener(v -> listener.onReminderClick(position));
-    }
-    //endregion ON_BIND_VIEW_HOLDER
+        holder.btDeleteReminder.setOnClickListener(v -> onDeleteReminderClick(position));
 
+        LocalDateTime now = LocalDateTime.now();
+
+        if (date.isBefore(now)) {
+            holder.itemView.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.ultra_light_grey, null));
+            holder.btDeleteReminder.setVisibility(View.VISIBLE);
+        } else {
+            holder.itemView.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.white, null));
+            holder.btDeleteReminder.setVisibility(View.GONE);
+        }
+    }
+
+    //endregion ON_BIND_VIEW_HOLDER
     //region GET_ITEM_COUNT
+
     @Override
     public int getItemCount() {
         return reminders.size();
     }
     //endregion GET_ITEM_COUNT
-
     //region REMINDER_VIEW_HOLDER
     public static class ReminderViewHolder extends RecyclerView.ViewHolder {
+
         TextView tvReminderName;
         TextView tvReminderTime;
         TextView tvReminderDate;
         TextView tvReminderDescription;
+        CardView btDeleteReminder;
 
         public ReminderViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvReminderName = itemView.findViewById(R.id.tvReminderName);
-            tvReminderTime = itemView.findViewById(R.id.tvReminderTime);
-            tvReminderDate = itemView.findViewById(R.id.tvReminderDate);
-            tvReminderDescription = itemView.findViewById(R.id.tvReminderDescription);
+            tvReminderName = itemView.findViewById(R.id.tvReminderNameItemReminder);
+            tvReminderTime = itemView.findViewById(R.id.tvReminderTimeItemReminder);
+            tvReminderDate = itemView.findViewById(R.id.tvReminderDateItemReminder);
+            tvReminderDescription = itemView.findViewById(R.id.tvReminderDescriptionItemReminder);
+            btDeleteReminder = itemView.findViewById(R.id.btDeleteReminderItemReminder);
         }
+
     }
     //endregion REMINDER_VIEW_HOLDER
 
-    //region ON_REMINDER_CLICK_LISTENER
+    //region EVENT LISTENERS
     public interface OnReminderClickListener {
         void onReminderClick(int position);
     }
-    //endregion ON_REMINDER_CLICK_LISTENER
+    private void onDeleteReminderClick(int position) {
+
+    }
+    //endregion
 }

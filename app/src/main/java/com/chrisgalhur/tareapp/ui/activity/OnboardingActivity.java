@@ -24,9 +24,7 @@ import java.util.List;
 
 public class OnboardingActivity extends BaseActivity implements OnboardingView {
 
-    //region INJECTION
     private OnboardingPresenter presenter;
-    //endregion INJECTION
 
     //region UI
     private ViewPager2 viewPager;
@@ -40,7 +38,7 @@ public class OnboardingActivity extends BaseActivity implements OnboardingView {
     private TextView tvNextFinish;
     //endregion UI
 
-    //region ON_CREATE
+    //region LIFE_CYCLE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +73,7 @@ public class OnboardingActivity extends BaseActivity implements OnboardingView {
             }
         });
     }
-    //endregion ON_CREATE
+    //endregion LIFE_CYCLE
 
     //region SHOW_SCREEN
     @Override

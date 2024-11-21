@@ -61,5 +61,7 @@
     <string name="reminders_colon">Recordatoris:</string>
     <string name="no_reminders_message">No tens recordatoris,\n clica en el símbol \'+\' per afegir un recordatori.</string>
     <string name="mute">Silenciar</string>
+    <string name="error_loading_reminders">Error carregant recordatoris</string>
+    <string name="delete_past_reminder">Eliminar Recordatori Pasat</string>
 
 </resources>

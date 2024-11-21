@@ -33,7 +33,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-            android:id="@+id/btDeleteReminderFormReminder"
+            android:id="@+id/btDeleteReminderItemReminder"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"

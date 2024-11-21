@@ -75,7 +75,7 @@ public class FormReminderActivity extends BaseActivity implements FormReminderVi
         presenter = new FormReminderPresenterImpl(this, model);
 
         tvTitle = findViewById(R.id.tvTitleFormReminder);
-        btDeleteReminder = findViewById(R.id.btDeleteReminderFormReminder);
+        btDeleteReminder = findViewById(R.id.btDeleteReminderItemReminder);
         etReminderName = findViewById(R.id.textInReminderNameFormReminder);
         etReminderDescription = findViewById(R.id.textInReminderDescriptionFormReminder);
         btSelectDate = findViewById(R.id.btSelectDateFormReminder);
